@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="es" data-tema="oscuro">
+<html lang="es" data-tema="claro">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Simuladores AIF-C01 · AWS Certified AI Practitioner</title>
 <style>
     *{box-sizing:border-box}
@@ -20,7 +21,8 @@
       --mal:#a8231c;--mal-suave:rgba(168,35,28,.10);--aviso:#8a5a00;
       --sombra:0 1px 2px rgba(16,24,40,.07),0 10px 26px rgba(16,24,40,.10)}
     body{margin:0;background:var(--fondo);color:var(--texto);font-family:var(--fuente);
-      font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+      font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;
+      -webkit-text-size-adjust:100%;text-size-adjust:100%;overflow-wrap:break-word}
     ::selection{background:var(--acento-suave)}
     :focus-visible{outline:2px solid var(--acento);outline-offset:2px;border-radius:6px}
     .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;
@@ -75,6 +77,7 @@
     .pbtn.done{border-color:var(--acento);font-weight:750;color:var(--acento)}
     .pbtn.flag{border-color:var(--aviso);color:var(--aviso)}
     .pbtn.cur{outline:2px solid var(--acento);outline-offset:1px}
+    .tabla{overflow-x:auto;-webkit-overflow-scrolling:touch}
     table{border-collapse:collapse;width:100%;font-size:14px}
     th,td{border-bottom:1px solid var(--borde);padding:9px 10px;text-align:left;vertical-align:top}
     th{font-weight:650;color:var(--texto2);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em}
@@ -116,13 +119,57 @@
       padding:3px 10px;background:var(--panel2)}
     .prog span.ok{border-color:var(--ok);color:var(--ok)} .prog span.bad{border-color:var(--mal);color:var(--mal)}
     hr{border:0;border-top:1px solid var(--borde);margin:16px 0}
-    @media (max-width:640px){.pair{grid-template-columns:1fr}.card{padding:14px}.barra{top:40px}
-      .anillo{width:112px;height:112px;flex-basis:112px}.anillo>div{width:88px;height:88px}.score{font-size:24px}}
+    @media (max-width:720px){
+      .app{padding:14px 12px 48px}
+      .topbar{padding:8px 12px;gap:8px}
+      .marca{font-size:11px;letter-spacing:.04em}
+      .marca .largo{display:none}
+      .card{padding:14px;margin:10px 0;border-radius:11px}
+      h1{font-size:18px} h2{font-size:14.5px}
+      .barra{top:38px;margin:0 0 10px;padding:9px 10px}
+      .barra h1{font-size:15px !important}
+      .barra .tag{font-size:11px;padding:2px 8px}
+      .timer{font-size:15px}
+      button{padding:9px 12px;font-size:13.5px}
+      button.mini{padding:7px 10px}
+      .seg{display:flex;width:100%}
+      .seg-btn{flex:1 1 auto;text-align:center;font-size:13px;padding:9px 8px}
+      .examcard{padding:12px 13px}
+      .opt{padding:10px 11px;gap:9px}
+      .opt .idx{flex-basis:23px;height:23px;font-size:12px}
+      .palette{grid-template-columns:repeat(auto-fill,minmax(38px,1fr));gap:5px}
+      .pbtn{padding:8px 0}
+      .pair{grid-template-columns:1fr;gap:5px}
+      .pair>span:first-child{margin-top:6px;font-weight:600}
+      .pair select{width:100%}
+      .anillo{width:104px;height:104px;flex-basis:104px}
+      .anillo>div{width:82px;height:82px}
+      .score{font-size:23px}
+      .veredicto{font-size:17px}
+      .tabla{overflow:visible}
+      .tabla table{min-width:0;font-size:13.5px}
+      .tabla thead{display:none}
+      .tabla tbody tr,.tabla tr{display:block;border:1px solid var(--borde);border-radius:10px;
+        padding:9px 11px;margin:9px 0;background:var(--panel2)}
+      .tabla tr:hover td{background:transparent}
+      .tabla td{display:block;border:0;padding:2px 0}
+      .tabla td[data-th]::before{content:attr(data-th);display:block;font-size:10.5px;text-transform:uppercase;
+        letter-spacing:.05em;color:var(--texto2)}
+      th,td{padding:8px}
+      .row{gap:7px}
+    }
+    @media (max-width:420px){
+      .anillo{width:92px;height:92px;flex-basis:92px}
+      .anillo>div{width:72px;height:72px}
+      .score{font-size:20px}
+      .palette{grid-template-columns:repeat(auto-fill,minmax(34px,1fr))}
+      .pbtn{font-size:12px;padding:7px 0}
+    }
 </style>
 </head>
 <body>
 <div class="topbar">
-  <span class="marca">AWS Certified AI Practitioner · <b>AIF-C01</b></span>
+  <span class="marca"><span class="largo">AWS Certified AI Practitioner · </span><b>AIF-C01</b></span>
   <span class="spacer"></span>
   <button id="btnTema" class="mini ghost" title="Cambiar entre tema claro y oscuro">Tema</button>
 </div>
@@ -272,10 +319,10 @@ function resultadoHTML(){
   const per={}; qs().forEach(q=>{ per[q.domain]=per[q.domain]||{c:0,t:0,tareas:new Set()};
     per[q.domain].t++; if(isCorrect(q)) per[q.domain].c++; else per[q.domain].tareas.add(q.task); });
   const filas=Object.keys(per).sort().map(d=>{ const v=per[d];
-    return `<tr><td>${DOMAINS[d].n}<div class="muted">${DOMAINS[d].w}% del contenido puntuable</div></td>
-      <td style="white-space:nowrap">${v.c} / ${v.t}</td><td style="width:110px"><div class="bar ${pct(v.c,v.t)>=70?"ok":"bad"}"><i style="width:${pct(v.c,v.t)}%"></i></div>
+    return `<tr><td data-th="Dominio">${DOMAINS[d].n}<div class="muted">${DOMAINS[d].w}% del contenido puntuable</div></td>
+      <td data-th="Correctas" style="white-space:nowrap">${v.c} / ${v.t}</td><td data-th="Progreso" style="width:110px"><div class="bar ${pct(v.c,v.t)>=70?"ok":"bad"}"><i style="width:${pct(v.c,v.t)}%"></i></div>
       <span class="muted">${pct(v.c,v.t)}%</span></td>
-      <td>${v.tareas.size? [...v.tareas].sort().join(", ") : '<span class="pass">sin pendientes</span>'}</td></tr>`; }).join("");
+      <td data-th="Tareas por repasar">${v.tareas.size? [...v.tareas].sort().join(", ") : '<span class="pass">sin pendientes</span>'}</td></tr>`; }).join("");
   const lista=qs().filter(q=>S.onlyWrong?!isCorrect(q):true).map(q=>{
     const ok=isCorrect(q), a=S.ans[key(q)]||{};
     let tuya="Sin responder", buena="";
@@ -300,7 +347,7 @@ function resultadoHTML(){
       `<div class="muted">Intento guardado en tu historial · ${store.read().length} intento(s) en total.</div>`) : "";
   return `<h1>Resultado · ${S.exam.name}</h1>
     ${avisoGuardado}
-    <div class="card"><div class="row" style="gap:22px;flex-wrap:nowrap;align-items:center">
+    <div class="card"><div class="row" style="gap:18px;flex-wrap:wrap;align-items:center">
       <div class="anillo ${pass?"ok":"bad"}" style="--p:${Math.round((sc-100)/900*100)}">
         <div><span class="score ${pass?"pass":"fail"}">${sc}</span><span class="muted" style="font-size:11px">de 1000</span></div>
       </div>
@@ -311,7 +358,7 @@ function resultadoHTML(){
       </div></div>
     </div>
     <div class="card"><h2 style="margin-top:0">Desempeño por dominio</h2>
-      <table><tr><th>Dominio</th><th>Correctas</th><th></th><th>Tareas por repasar</th></tr>${filas}</table>
+      <div class="tabla"><table><thead><tr><th>Dominio</th><th>Correctas</th><th></th><th>Tareas por repasar</th></tr></thead><tbody>${filas}</tbody></table></div>
       <p class="muted" style="margin-top:10px">El examen usa puntaje compensatorio: no necesitas aprobar cada dominio, solo el examen completo.
       Usa la última columna para dirigir tu repaso en lugar de releer todo.</p></div>
     <div class="row" style="margin:16px 0">
@@ -329,42 +376,42 @@ function historialHTML(){
       <textarea id="exportbox"></textarea>
       <div class="row" style="margin-top:8px"><button data-import="1">Importar desde el cuadro</button></div></div>`;
   const filas=hist.slice().reverse().map((a,i)=>`<tr>
-      <td>${fecha(a.ts)}</td><td>${a.examName}</td>
-      <td>${a.modo==="examen"?"Examen (90 min)":"Estudio"}</td>
-      <td>${a.correctas} / ${a.total}</td>
-      <td class="${a.aprobado?"pass":"fail"}"><strong>${a.puntaje}</strong></td>
-      <td>${a.aprobado?"Sí":"No"}</td>
-      <td>${a.duracionSeg!=null? fmt(a.duracionSeg) : "—"}</td></tr>`).join("");
+      <td data-th="Fecha">${fecha(a.ts)}</td><td data-th="Examen">${a.examName}</td>
+      <td data-th="Modo">${a.modo==="examen"?"Examen (90 min)":"Estudio"}</td>
+      <td data-th="Correctas">${a.correctas} / ${a.total}</td>
+      <td data-th="Puntaje" class="${a.aprobado?"pass":"fail"}"><strong>${a.puntaje}</strong></td>
+      <td data-th="Aprobado">${a.aprobado?"Sí":"No"}</td>
+      <td data-th="Tiempo">${a.duracionSeg!=null? fmt(a.duracionSeg) : "—"}</td></tr>`).join("");
   const proges=hist.map((a,i)=>`<span class="${a.aprobado?"ok":"bad"}">${i+1} · ${a.examId} · ${a.puntaje}</span>`).join("");
   const domAgg={};
   hist.forEach(a=>{ Object.keys(a.porDominio||{}).forEach(d=>{ const v=a.porDominio[d];
     domAgg[d]=domAgg[d]||{c:0,t:0}; domAgg[d].c+=v.c; domAgg[d].t+=v.t; }); });
   const domFilas=Object.keys(domAgg).sort().map(d=>{ const v=domAgg[d], p=pct(v.c,v.t);
     const veredicto = p>=80? "sólido" : p>=70? "suficiente, con margen corto" : "es tu área débil";
-    return `<tr><td>${DOMAINS[d].n}</td><td>${v.c} / ${v.t}</td>
-      <td style="width:130px"><div class="bar ${p>=70?"ok":"bad"}"><i style="width:${p}%"></i></div><span class="muted">${p}%</span></td>
-      <td>${veredicto}</td></tr>`; }).join("");
+    return `<tr><td data-th="Dominio">${DOMAINS[d].n}</td><td data-th="Correctas">${v.c} / ${v.t}</td>
+      <td data-th="Progreso" style="width:130px"><div class="bar ${p>=70?"ok":"bad"}"><i style="width:${p}%"></i></div><span class="muted">${p}%</span></td>
+      <td data-th="Lectura">${veredicto}</td></tr>`; }).join("");
   const conocidos=new Set(EXAMS.map(e=>e.id));
   const otros=[...new Set(hist.map(a=>a.examId))].filter(id=>!conocidos.has(id));
   const porExamen=EXAMS.map(ex=>{ const m=hist.filter(a=>a.examId===ex.id);
-    if(!m.length) return `<tr><td>${ex.name}</td><td>—</td><td>—</td><td>aún no lo haces</td></tr>`;
+    if(!m.length) return `<tr><td data-th="Examen">${ex.name}</td><td data-th="Intentos">—</td><td data-th="Mejor">—</td><td data-th="Último">aún no lo haces</td></tr>`;
     const mejor=Math.max(...m.map(a=>a.puntaje)), ult=m[m.length-1];
-    return `<tr><td>${ex.name}</td><td>${m.length}</td><td><strong>${mejor}</strong></td>
-      <td>último: ${ult.puntaje} (${fecha(ult.ts)})</td></tr>`; }).join("")
+    return `<tr><td data-th="Examen">${ex.name}</td><td data-th="Intentos">${m.length}</td><td data-th="Mejor"><strong>${mejor}</strong></td>
+      <td data-th="Último">último: ${ult.puntaje} (${fecha(ult.ts)})</td></tr>`; }).join("")
     + otros.map(id=>{ const m=hist.filter(a=>a.examId===id);
-      return `<tr><td>Examen ${id} <span class="muted">(de un respaldo que no está en esta versión)</span></td>
-        <td>${m.length}</td><td><strong>${Math.max(...m.map(a=>a.puntaje))}</strong></td>
+      return `<tr><td data-th="Examen">Examen ${id} <span class="muted">(de un respaldo que no está en esta versión)</span></td>
+        <td data-th="Intentos">${m.length}</td><td data-th="Mejor"><strong>${Math.max(...m.map(a=>a.puntaje))}</strong></td>
         <td>último: ${m[m.length-1].puntaje} (${fecha(m[m.length-1].ts)})</td></tr>`; }).join("");
   return `<h1>Historial de intentos</h1>
     <div class="card"><h2 style="margin-top:0">Progresión</h2>
       <p class="muted">Cada etiqueta es un intento terminado, en orden: número · examen · puntaje.</p>
       <div class="prog">${proges}</div></div>
     <div class="card"><h2 style="margin-top:0">Intentos</h2>
-      <table><tr><th>Fecha</th><th>Examen</th><th>Modo</th><th>Correctas</th><th>Puntaje</th><th>Aprobado</th><th>Tiempo</th></tr>${filas}</table></div>
+      <div class="tabla"><table><thead><tr><th>Fecha</th><th>Examen</th><th>Modo</th><th>Correctas</th><th>Puntaje</th><th>Aprobado</th><th>Tiempo</th></tr></thead><tbody>${filas}</tbody></table></div></div>
     <div class="card"><h2 style="margin-top:0">Por examen</h2>
-      <table><tr><th>Examen</th><th>Intentos</th><th>Mejor</th><th>Último</th></tr>${porExamen}</table></div>
+      <div class="tabla"><table><thead><tr><th>Examen</th><th>Intentos</th><th>Mejor</th><th>Último</th></tr></thead><tbody>${porExamen}</tbody></table></div></div>
     <div class="card"><h2 style="margin-top:0">Por dominio, sumando todos los intentos</h2>
-      <table><tr><th>Dominio</th><th>Correctas</th><th></th><th>Lectura</th></tr>${domFilas}</table>
+      <div class="tabla"><table><thead><tr><th>Dominio</th><th>Correctas</th><th></th><th>Lectura</th></tr></thead><tbody>${domFilas}</tbody></table></div>
       <p class="muted" style="margin-top:10px">Si un dominio se queda por debajo de 70% acumulado, ese es el que manda en tu repaso: en el blueprint pesa
       lo que dice la segunda columna de la vista de resultados.</p></div>
     <div class="card"><h2 style="margin-top:0">Respaldo</h2>
@@ -432,7 +479,7 @@ function enviar(auto){
   S.view="resultado"; window.scrollTo(0,0); render();
 }
 /* ---------- tema ---------- */
-let TEMA=(()=>{ try{ return localStorage.getItem("aifC01.tema")||"oscuro"; }catch(e){ return "oscuro"; } })();
+let TEMA=(()=>{ try{ return localStorage.getItem("aifC01.tema")||"claro"; }catch(e){ return "claro"; } })();
 function aplicarTema(){
   document.documentElement.setAttribute("data-tema",TEMA);
   const b=document.getElementById("btnTema");
