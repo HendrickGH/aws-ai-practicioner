@@ -1,0 +1,1140 @@
+[
+ {
+  "id": 1,
+  "domain": 1,
+  "task": "1.1",
+  "type": "mc",
+  "stem": "Un equipo explica a las partes interesadas cómo se relacionan entre sí las tecnologías de IA. ¿Cuál afirmación es correcta?",
+  "options": [
+   "El aprendizaje profundo (deep learning) es un subconjunto del aprendizaje automático (machine learning), y el aprendizaje automático es un subconjunto de la IA.",
+   "El aprendizaje automático es un subconjunto del aprendizaje profundo, y el aprendizaje profundo es un subconjunto de la IA.",
+   "La IA es un subconjunto del aprendizaje automático que utiliza únicamente redes neuronales con muchas capas.",
+   "La IA generativa es un subconjunto del aprendizaje profundo que requiere datos etiquetados para cada tarea."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El aprendizaje profundo utiliza redes neuronales de múltiples capas y es un subconjunto del aprendizaje automático, que a su vez forma parte del campo más amplio de la IA. La IA generativa produce contenido nuevo y no requiere datos etiquetados para cada tarea."
+ },
+ {
+  "id": 2,
+  "domain": 1,
+  "task": "1.1",
+  "type": "mc",
+  "stem": "¿Qué descripción define mejor la IA agéntica (agentic AI)?",
+  "options": [
+   "Un sistema que devuelve una sola respuesta a un solo mensaje, sin interacción externa.",
+   "Un sistema en el que un modelo planifica, usa herramientas y ejecuta acciones en varios pasos para alcanzar un objetivo.",
+   "Un modelo que se entrena con datos sin etiquetar para agrupar registros similares.",
+   "Un modelo estadístico que predice un valor numérico a partir de datos tabulares históricos."
+  ],
+  "answers": [
+   1
+  ],
+  "explain": "La IA agéntica va más allá de un único intercambio de pregunta y respuesta: el modelo descompone un objetivo, selecciona y llama herramientas o API, conserva memoria de los resultados intermedios e itera hasta completar la tarea. Un sistema que solo responde a un mensaje, o un modelo que únicamente agrupa registros, no actúa de forma autónoma."
+ },
+ {
+  "id": 3,
+  "domain": 1,
+  "task": "1.2",
+  "type": "mc",
+  "stem": "Una empresa minorista quiere agrupar a sus clientes según su comportamiento de compra para diseñar campañas de marketing. No se dispone de etiquetas previas de clientes. ¿Qué enfoque debería utilizar?",
+  "options": [
+   "Aprendizaje supervisado con un modelo de regresión.",
+   "Aprendizaje no supervisado con un modelo de agrupamiento (clustering).",
+   "Aprendizaje supervisado con un modelo de clasificación.",
+   "Aprendizaje por refuerzo (reinforcement learning) con una función de recompensa."
+  ],
+  "answers": [
+   1
+  ],
+  "explain": "Al no haber etiquetas disponibles, la tarea es no supervisada y el agrupamiento encuentra grupos naturales en los datos. La clasificación y la regresión supervisadas requieren ejemplos de entrenamiento etiquetados, que en este caso no existen."
+ },
+ {
+  "id": 4,
+  "domain": 1,
+  "task": "1.1",
+  "type": "mc",
+  "stem": "Un robot autónomo de almacén mejora su ruta por prueba y error: recibe una penalización cuando choca y una recompensa cuando entrega una tarima rápidamente. ¿Qué tipo de aprendizaje se está utilizando?",
+  "options": [
+   "Aprendizaje supervisado.",
+   "Aprendizaje no supervisado.",
+   "Aprendizaje por refuerzo (reinforcement learning).",
+   "Aprendizaje por transferencia (transfer learning)."
+  ],
+  "answers": [
+   2
+  ],
+  "explain": "Aprender con recompensas y penalizaciones mientras se interactúa con un entorno es aprendizaje por refuerzo. Al agente no se le entregan ejemplos etiquetados del comportamiento correcto, por lo que no se trata de aprendizaje supervisado."
+ },
+ {
+  "id": 5,
+  "domain": 1,
+  "task": "1.1",
+  "type": "mc",
+  "stem": "Una empresa de medios debe transcribir cinco años de grabaciones archivadas durante un fin de semana. Los resultados se revisan el lunes siguiente y no se requiere una respuesta interactiva. ¿Qué tipo de inferencia es más apropiado?",
+  "options": [
+   "Inferencia por lotes (batch).",
+   "Inferencia en tiempo real.",
+   "Inferencia asíncrona.",
+   "Inferencia sin servidor (serverless)."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La inferencia por lotes procesa un gran volumen de solicitudes acumuladas y no exige un requisito de latencia. La inferencia en tiempo real y la asíncrona atienden solicitudes bajo demanda de las aplicaciones, que no es lo que pide este escenario."
+ },
+ {
+  "id": 6,
+  "domain": 1,
+  "task": "1.1",
+  "type": "mc",
+  "stem": "Una aplicación envía una solicitud que tarda varios minutos en generar un video. El cliente no puede mantener la conexión abierta y espera recibir una notificación cuando el resultado esté listo. ¿Qué tipo de inferencia se ajusta mejor?",
+  "options": [
+   "Inferencia por lotes (batch).",
+   "Inferencia en tiempo real.",
+   "Inferencia asíncrona.",
+   "Inferencia en el dispositivo del cliente (edge)."
+  ],
+  "answers": [
+   2
+  ],
+  "explain": "La inferencia asíncrona acepta solicitudes de larga duración: la solicitud se pone en cola, se procesa y el resultado se almacena para recuperarlo después, de modo que el cliente no se bloquea. La inferencia por lotes se usa con grandes conjuntos de datos sin un disparador por solicitud."
+ },
+ {
+  "id": 7,
+  "domain": 1,
+  "task": "1.3",
+  "type": "mc",
+  "stem": "El modelo de detección de fraude de un banco debe detectar la mayor cantidad posible de transacciones fraudulentas, aun cuando eso implique marcar algunas transacciones legítimas para revisión manual. ¿Qué métrica debería priorizarse?",
+  "options": [
+   "Exactitud (accuracy).",
+   "Precisión (precision).",
+   "Exhaustividad (recall).",
+   "Error cuadrático medio (root mean squared error)."
+  ],
+  "answers": [
+   2
+  ],
+  "explain": "La exhaustividad (recall) mide cuántos de los casos positivos reales se detectaron. Cuando pasar por alto un fraude es costoso y las falsas alarmas son tolerables, la métrica que conviene maximizar es el recall. La exactitud resulta engañosa con datos desbalanceados y la precisión favorece evitar falsos positivos."
+ },
+ {
+  "id": 8,
+  "domain": 1,
+  "task": "1.3",
+  "type": "mc",
+  "stem": "¿Cuál de las siguientes es una métrica de negocio y no una métrica de rendimiento del modelo en una solución de IA?",
+  "options": [
+   "El puntaje F1 del clasificador.",
+   "La exhaustividad (recall) del modelo de predicción de abandono de clientes.",
+   "El retorno de la inversión (ROI) del programa de IA.",
+   "El área bajo la curva de precisión y exhaustividad."
+  ],
+  "answers": [
+   2
+  ],
+  "explain": "Las métricas de negocio, como el ROI, el costo por usuario y los comentarios de los clientes, miden el valor entregado a la organización. El puntaje F1, el recall y las medidas basadas en curvas describen únicamente el comportamiento del modelo."
+ },
+ {
+  "id": 9,
+  "domain": 1,
+  "task": "1.2",
+  "type": "mc",
+  "stem": "¿Qué escenario es el MENOS apropiado para una solución de aprendizaje automático (machine learning)?",
+  "options": [
+   "Pronosticar la demanda de productos de temporada del próximo trimestre.",
+   "Calcular un monto de impuestos exigido por ley que debe ser exacto, auditable y determinista.",
+   "Marcar patrones inusuales en millones de transacciones financieras.",
+   "Resumir conversaciones largas de atención al cliente para los agentes."
+  ],
+  "answers": [
+   1
+  ],
+  "explain": "Cuando se requiere un resultado específico, exacto y auditable, lo correcto es una implementación determinista basada en reglas. El aprendizaje automático es apropiado cuando la tarea implica predicción o reconocimiento de patrones en datos demasiado grandes o variables para reglas fijas."
+ },
+ {
+  "id": 10,
+  "domain": 1,
+  "task": "1.3",
+  "type": "mc",
+  "stem": "Seis meses después del despliegue, un modelo de pronóstico de demanda pierde exactitud de forma notoria porque el comportamiento de compra de los clientes cambió. ¿Qué práctica de MLOps atiende este problema?",
+  "options": [
+   "Aumentar el tamaño de la instancia de inferencia.",
+   "Supervisar el modelo para detectar desviación de datos (data drift) y reentrenarlo con datos recientes.",
+   "Reducir la temperatura del modelo.",
+   "Volver a ejecutar el experimento de entrenamiento inicial sin cambios."
+  ],
+  "answers": [
+   1
+  ],
+  "explain": "Supervisar las entradas y las salidas en producción permite detectar la desviación, y el reentrenamiento periódico con datos actuales restaura la exactitud. Escalar la infraestructura no corrige un modelo desactualizado y repetir el experimento original reproduce los mismos patrones obsoletos."
+ },
+ {
+  "id": 11,
+  "domain": 1,
+  "task": "1.2",
+  "type": "mc",
+  "stem": "Una entidad financiera regulada necesita un modelo de decisión cuyo razonamiento pueda explicarse por completo a los auditores. El conjunto de datos disponible es modesto y el requisito de exactitud es moderado. ¿Qué enfoque es más apropiado?",
+  "options": [
+   "Ajustar finamente (fine-tuning) un modelo fundacional multimodal grande con los datos de la entidad.",
+   "Usar un modelo de aprendizaje automático tradicional e interpretable en lugar de un modelo fundacional.",
+   "Aplicar generación aumentada por recuperación (RAG) con un modelo fundacional.",
+   "Usar un modelo fundacional con una temperatura más alta."
+  ],
+  "answers": [
+   1
+  ],
+  "explain": "Los requisitos regulatorios de explicabilidad, los datos limitados y una necesidad moderada de exactitud favorecen los modelos tradicionales interpretables. Los modelos fundacionales son preferibles cuando las tareas son abiertas, intensivas en lenguaje o modalidades, o requieren una capacidad de generalización amplia."
+ },
+ {
+  "id": 12,
+  "domain": 1,
+  "task": "1.3",
+  "type": "order",
+  "stem": "Ordene las etapas de un flujo de trabajo (pipeline) de IA/ML de la primera a la última actividad.",
+  "items": [
+   "Recopilar datos de los sistemas de origen",
+   "Explorar y preprocesar los datos",
+   "Construir y registrar las variables (features)",
+   "Entrenar y evaluar el modelo",
+   "Desplegar y supervisar el modelo"
+  ],
+  "explain": "El flujo comienza con la recopilación de datos, continúa con el análisis exploratorio y el preprocesamiento, sigue con la ingeniería y el registro de variables, después con el entrenamiento y la evaluación, y termina con el despliegue y la supervisión continua para detectar desviaciones."
+ },
+ {
+  "id": 13,
+  "domain": 1,
+  "task": "1.2",
+  "type": "match",
+  "stem": "Relacione cada servicio de IA administrado de AWS con la capacidad que ofrece.",
+  "pairs": [
+   [
+    "Amazon Transcribe",
+    "Convertir voz en texto"
+   ],
+   [
+    "Amazon Comprehend",
+    "Extraer entidades y sentimiento a partir de texto"
+   ],
+   [
+    "Amazon Lex",
+    "Crear interfaces conversacionales de voz y chat"
+   ],
+   [
+    "Amazon Polly",
+    "Convertir texto en voz de sonido natural"
+   ],
+   [
+    "Amazon Rekognition",
+    "Detectar objetos y rostros en imágenes y video"
+   ],
+   [
+    "Amazon Textract",
+    "Extraer texto y datos de formularios de documentos escaneados"
+   ]
+  ],
+  "explain": "Estos servicios administrados ofrecen capacidades de IA preconstruidas para no entrenar modelos desde cero: voz a texto (Transcribe), análisis de texto (Comprehend), bots conversacionales (Lex), texto a voz (Polly), análisis de imágenes y video (Rekognition) y extracción de documentos (Textract)."
+ },
+ {
+  "id": 14,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "¿Qué afirmación define mejor un modelo fundacional (foundation model)?",
+  "options": [
+   "Un modelo entrenado con un conjunto de datos limitado para una única tarea que nunca se reutiliza.",
+   "Un modelo grande preentrenado con datos amplios que puede adaptarse a muchas tareas posteriores.",
+   "Un motor de reglas que codifica decisiones de expertos como enunciados condicionales.",
+   "Un tablero que visualiza las predicciones generadas por otros sistemas."
+  ],
+  "answers": [
+   1
+  ],
+  "explain": "Los modelos fundacionales se preentrenan con datos generales amplios y después se adaptan mediante instrucciones (prompting), generación aumentada por recuperación (RAG) o ajuste fino para muchas tareas distintas, lo que los hace reutilizables. Un modelo de una sola tarea y un motor de reglas no tienen esa capacidad de adaptación."
+ },
+ {
+  "id": 15,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "¿Qué es un token en el contexto de un modelo de lenguaje grande (LLM)?",
+  "options": [
+   "Una unidad de texto, aproximadamente una palabra o parte de una palabra, que el modelo procesa y en la que se basa la facturación.",
+   "Una imagen individual usada para entrenar un modelo multimodal.",
+   "Una credencial de cuenta de usuario utilizada para llamar a la API del modelo.",
+   "Un punto de control que guarda los pesos del modelo durante el entrenamiento."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El texto se divide en tokens antes de procesarse. Tanto los tokens de entrada como los de salida consumen la ventana de contexto del modelo y determinan el costo de la inferencia."
+ },
+ {
+  "id": 16,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "Un equipo quiere una búsqueda semántica sobre descripciones de productos para que los resultados coincidan por significado y no por palabras clave exactas. ¿Qué debe generar y almacenar?",
+  "options": [
+   "Incrustaciones (embeddings) de las descripciones almacenadas en un almacén de vectores.",
+   "Miniaturas comprimidas de las imágenes de los productos.",
+   "Políticas de acceso a nivel de fila para la tabla de productos.",
+   "Un valor hash de cada descripción para la coincidencia exacta."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Las incrustaciones son vectores numéricos que capturan el significado, de modo que los registros con significado similar quedan cerca unos de otros en el espacio vectorial. Almacenarlas en un almacén de vectores se habilita la búsqueda por similitud en lugar de la coincidencia por palabras clave."
+ },
+ {
+  "id": 17,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "¿Por qué se utiliza la fragmentación (chunking) al preparar documentos para la generación aumentada por recuperación (RAG)?",
+  "options": [
+   "Para comprimir los documentos y que consuman menos tokens al archivarlos.",
+   "Para dividir los documentos en pasajes más pequeños, de modo que solo se recupere el contenido más relevante y quepa en la ventana de contexto.",
+   "Para cifrar los documentos antes de almacenarlos en una base de datos vectorial.",
+   "Para traducir los documentos al idioma del modelo."
+  ],
+  "answers": [
+   1
+  ],
+  "explain": "La recuperación funciona mejor con fragmentos pequeños y semánticamente coherentes. La fragmentación mejora la precisión de las coincidencias y mantiene el contexto recuperado dentro de los límites de la ventana de contexto del modelo."
+ },
+ {
+  "id": 18,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "Un modelo acepta tanto imágenes como texto y puede responder preguntas sobre el contenido de un diagrama enviado. ¿Qué término describe a este modelo?",
+  "options": [
+   "Un modelo fundacional multimodal.",
+   "Un modelo de pronóstico de series de tiempo.",
+   "Un modelo de filtrado colaborativo.",
+   "Un sistema experto basado en reglas."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Un modelo capaz de procesar más de una modalidad de entrada, como texto e imágenes, es multimodal. Así se habilita la comprensión de diagramas, documentos y capturas de pantalla."
+ },
+ {
+  "id": 19,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "¿Qué tipo de modelo se usa más comúnmente para generar imágenes fotorrealistas a partir de una descripción de texto?",
+  "options": [
+   "Un modelo de difusión (diffusion model).",
+   "Un modelo de recomendaciones.",
+   "Un modelo de agrupamiento (clustering).",
+   "Un modelo de detección de anomalías."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Los modelos de difusión generan imágenes eliminando progresivamente el ruido de un punto de partida aleatorio, guiados por el prompt de texto. Los LLM basados en transformadores se encargan de la generación de texto, no de imágenes fotorrealistas."
+ },
+ {
+  "id": 20,
+  "domain": 2,
+  "task": "2.2",
+  "type": "mc",
+  "stem": "Un asistente de IA generativa cita con seguridad una política de la empresa que no existe en ninguno de los documentos de la compañía. ¿Qué limitación ilustra esto?",
+  "options": [
+   "Alucinación (hallucination).",
+   "Desviación de datos (data drift).",
+   "Subajuste (underfitting).",
+   "Caché de prompts (prompt caching)."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Una alucinación es una afirmación fluida pero incorrecta o inventada. Fundamentar las respuestas en documentos fuente recuperados y validar las salidas reduce este riesgo, mientras que la caché de prompts solo acelera respuestas repetidas."
+ },
+ {
+  "id": 21,
+  "domain": 2,
+  "task": "2.2",
+  "type": "mc",
+  "stem": "Después de aumentar el parámetro de temperatura, el mismo prompt devuelve respuestas notablemente distintas en cada ejecución y en ocasiones incluye detalles incorrectos. ¿Qué controla el parámetro de temperatura?",
+  "options": [
+   "La aleatoriedad y la creatividad de la respuesta generada.",
+   "La cantidad de documentos recuperados del almacén de vectores.",
+   "La longitud de la ventana de contexto del modelo.",
+   "El cifrado de los datos en reposo."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La temperatura controla qué tan determinista es el muestreo. Los valores bajos producen salidas más consistentes y factuales; los valores altos generan salidas más variadas y creativas a costa de la consistencia."
+ },
+ {
+  "id": 22,
+  "domain": 2,
+  "task": "2.2",
+  "type": "mc",
+  "stem": "¿Qué afirmación describe una ventaja clave de la IA generativa frente a un modelo de aprendizaje automático tradicional específico para una tarea?",
+  "options": [
+   "Siempre produce una salida determinista e idéntica para la misma entrada.",
+   "Puede adaptarse a nuevas tareas con pocos o ningún dato de entrenamiento específico de la tarea.",
+   "Nunca requiere revisión humana de su salida.",
+   "Elimina la necesidad de controlar el acceso a los datos de la empresa."
+  ],
+  "answers": [
+   1
+  ],
+  "explain": "Los modelos fundacionales generalizan: el mismo modelo puede resumir, traducir, clasificar o redactar cambiando el prompt, en lugar de requerir un nuevo conjunto de datos etiquetados y un nuevo ciclo de entrenamiento para cada tarea. Además, su salida es no determinista, por lo que la revisión humana sigue siendo necesaria."
+ },
+ {
+  "id": 23,
+  "domain": 2,
+  "task": "2.2",
+  "type": "mc",
+  "stem": "Un asistente de cara al cliente debe responder en menos de un segundo y la normativa exige que todos los datos permanezcan en un país específico. ¿Qué factores son más importantes al seleccionar un modelo y un enfoque de despliegue?",
+  "options": [
+   "La latencia, la disponibilidad regional y los requisitos de cumplimiento.",
+   "La cantidad de parámetros del modelo más grande disponible.",
+   "El tamaño del conjunto de datos usado para preentrenar el modelo.",
+   "El lenguaje de programación que usa la aplicación cliente."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La selección de un modelo equilibra requisitos de rendimiento (latencia), restricciones (disponibilidad en la Región y residencia de datos) y cumplimiento normativo. Los modelos más grandes o más preentrenados no son automáticamente los más adecuados para el caso de uso."
+ },
+ {
+  "id": 24,
+  "domain": 2,
+  "task": "2.2",
+  "type": "mc",
+  "stem": "¿Qué métricas demuestran mejor el valor de negocio de un asistente de atención al cliente con IA generativa?",
+  "options": [
+   "Las puntuaciones ROUGE y BLEU.",
+   "El costo por interacción y la tasa de finalización de tareas.",
+   "La cantidad de parámetros del modelo y el tamaño de la ventana de contexto.",
+   "La cantidad de vectores almacenados en la base de datos vectorial."
+  ],
+  "answers": [
+   1
+  ],
+  "explain": "El valor de negocio de un asistente en producción se mide con métricas operativas y de resultado, como el costo por interacción, la tasa de finalización de tareas, la satisfacción del usuario y la tasa de resolución sin agente. ROUGE y BLEU son métricas de calidad de texto que se usan durante la evaluación del modelo, no indicadores de negocio."
+ },
+ {
+  "id": 25,
+  "domain": 2,
+  "task": "2.3",
+  "type": "mc",
+  "stem": "¿Por qué un prompt más largo, junto con una respuesta generada más larga, aumenta el costo de una invocación de Amazon Bedrock?",
+  "options": [
+   "Porque el costo se basa en la cantidad de tokens de entrada y de salida procesados.",
+   "Porque el costo se basa en la cantidad de claves de API usadas en la solicitud.",
+   "Porque el costo se basa en el tamaño del conjunto de datos de entrenamiento del modelo.",
+   "Porque el costo se basa en la cantidad de Regiones que usa la cuenta."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El precio bajo demanda de Amazon Bedrock sigue un modelo basado en tokens: los tokens de entrada y los de salida se facturan por separado. Reducir el contexto del prompt y limitar la longitud de la respuesta reduce directamente el costo."
+ },
+ {
+  "id": 26,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "¿Qué actividad implica la ingeniería de contexto (context engineering) en una aplicación con modelos fundacionales?",
+  "options": [
+   "Seleccionar y estructurar todo lo que se coloca en el contexto del modelo, como instrucciones, documentos recuperados, resultados de herramientas e historial de conversación.",
+   "Compilar el código de la aplicación que llama a la API del modelo.",
+   "Diseñar el esquema relacional de la base de datos transaccional.",
+   "Elegir el tipo de instancia que aloja el front end de la aplicación."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La ingeniería de contexto es la gestión deliberada de lo que el modelo puede ver en el momento de la inferencia. Como la ventana de contexto es limitada, decidir qué incluir, resumir u omitir afecta directamente la calidad de la salida y el costo."
+ },
+ {
+  "id": 27,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "¿Cuál es el papel del Protocolo de Contexto de Modelo (MCP) en las aplicaciones de IA agéntica?",
+  "options": [
+   "Proporciona una forma estándar para que los agentes se conecten con herramientas, fuentes de datos y servicios externos.",
+   "Cifra los pesos del modelo en reposo.",
+   "Reemplaza la necesidad de gestión de identidades y accesos para los agentes.",
+   "Ajusta finamente el modelo de forma automática después de cada conversación."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "MCP estandariza la forma en que los agentes descubren y llaman capacidades externas, lo que reduce el trabajo de integración personalizado para cada nueva herramienta o fuente de datos y hace más portátiles los flujos multiagente. No sustituye la gestión de identidades ni modifica los pesos del modelo."
+ },
+ {
+  "id": 28,
+  "domain": 2,
+  "task": "2.3",
+  "type": "mc",
+  "stem": "Un equipo de desarrollo quiere un entorno de desarrollo impulsado por IA que convierta especificaciones en código funcional mediante un flujo de trabajo agéntico y estructurado. ¿Qué oferta está diseñada para esto?",
+  "options": [
+   "Kiro.",
+   "Amazon Polly.",
+   "AWS Artifact.",
+   "Amazon Macie."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Kiro es el entorno de desarrollo agéntico de AWS que parte de especificaciones para generar y mantener código. Las otras opciones son servicios de síntesis de voz, de documentación de cumplimiento y de descubrimiento de datos sensibles."
+ },
+ {
+  "id": 29,
+  "domain": 2,
+  "task": "2.3",
+  "type": "mr",
+  "stem": "¿Qué TRES ofertas de AWS puede usar un equipo para crear aplicaciones de IA generativa? (Selecciona tres.)",
+  "options": [
+   "Amazon Bedrock",
+   "Amazon SageMaker AI",
+   "Strands Agents",
+   "AWS Artifact",
+   "AWS Glue DataBrew"
+  ],
+  "answers": [
+   0,
+   1,
+   2
+  ],
+  "explain": "Amazon Bedrock ofrece acceso administrado a modelos fundacionales, Amazon SageMaker AI cubre todo el ciclo de desarrollo y despliegue de modelos, y Strands Agents es un marco para crear agentes. AWS Artifact proporciona informes de cumplimiento y AWS Glue DataBrew es una herramienta de preparación de datos, no un componente para crear aplicaciones de IA generativa."
+ },
+ {
+  "id": 30,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "¿Qué afirmación describe mejor la generación aumentada por recuperación (RAG)?",
+  "options": [
+   "Recuperar documentos relevantes y agregarlos al prompt para que el modelo responda con información actual y específica del dominio.",
+   "Reentrenar todos los pesos del modelo cada noche con los documentos más recientes de la empresa.",
+   "Comprimir el modelo para que quepa en una instancia de inferencia más pequeña.",
+   "Almacenar en caché los prompts de los usuarios para que las preguntas idénticas respondan al instante."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "RAG mantiene el modelo sin cambios y le entrega contenido fuente relevante en el momento de la inferencia. Así se fundamentan las respuestas en los datos de la organización sin el costo de un entrenamiento; reentrenar los pesos cada noche sería mucho más caro y lento."
+ },
+ {
+  "id": 31,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "Una empresa quiere usar RAG administrado sobre su documentación interna sin construir su propio flujo de incrustaciones, indexación y recuperación. ¿Qué capacidad debería usar?",
+  "options": [
+   "Knowledge Bases for Amazon Bedrock.",
+   "Amazon Bedrock Guardrails.",
+   "Amazon Bedrock Model Evaluation.",
+   "AWS CloudTrail."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Knowledge Bases for Amazon Bedrock se encarga de la ingesta, la fragmentación, la generación de incrustaciones, el almacenamiento y la recuperación, y conecta los pasajes recuperados con el modelo. Guardrails filtra contenido, Model Evaluation califica las salidas y CloudTrail registra la actividad de las API."
+ },
+ {
+  "id": 32,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "¿Qué servicio de AWS puede funcionar como el almacén de vectores que contiene las incrustaciones usadas para la recuperación semántica?",
+  "options": [
+   "Amazon OpenSearch Service.",
+   "Amazon Macie.",
+   "AWS Glue DataBrew.",
+   "Amazon S3 Glacier."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Amazon OpenSearch Service admite búsqueda vectorial para incrustaciones. Amazon Aurora, Amazon Neptune y Amazon RDS for PostgreSQL también ofrecen capacidades vectoriales, mientras que Macie, AWS Glue DataBrew y Amazon S3 Glacier tienen propósitos distintos."
+ },
+ {
+  "id": 33,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "Un equipo debe darle a un modelo fundacional conocimiento de un pequeño conjunto de documentos internos que cambia cada semana. ¿Qué enfoque suele ser el más eficiente en costos?",
+  "options": [
+   "Preentrenar un modelo fundacional nuevo desde cero.",
+   "Preentrenamiento continuo del modelo existente.",
+   "Generación aumentada por recuperación (RAG) o aprendizaje en contexto (in-context learning) con los documentos actuales.",
+   "Ajuste fino (fine-tuning) completo de todos los pesos del modelo cada semana."
+  ],
+  "answers": [
+   2
+  ],
+  "explain": "RAG y el aprendizaje en contexto incorporan conocimiento actualizado en el momento de la inferencia sin costo de entrenamiento y con vigencia inmediata. El preentrenamiento, el preentrenamiento continuo y el ajuste fino completo son mucho más caros y lentos de actualizar."
+ },
+ {
+  "id": 34,
+  "domain": 3,
+  "task": "3.3",
+  "type": "mc",
+  "stem": "Un equipo quiere un modelo más pequeño y económico que reproduzca la mayor parte de la calidad de un modelo mucho más grande en una tarea específica. ¿Qué técnica debería aplicar?",
+  "options": [
+   "Destilación de modelos (model distillation).",
+   "Aumentar el parámetro de temperatura.",
+   "Agregar más registros al almacén de vectores.",
+   "Habilitar la caché de prompts."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La destilación de modelos entrena un modelo compacto para imitar el comportamiento de un modelo maestro más grande, lo que reduce el costo de inferencia y la latencia conservando la mayor parte de la calidad en la tarea. Agregar vectores o usar caché no cambia el tamaño del modelo."
+ },
+ {
+  "id": 35,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "Una aplicación debe producir respuestas muy consistentes y factuales para un caso de uso de soporte técnico. ¿Qué cambio en los parámetros de inferencia lo favorece mejor?",
+  "options": [
+   "Reducir la temperatura.",
+   "Aumentar la temperatura.",
+   "Aumentar la cantidad máxima de tokens de salida.",
+   "Aumentar sin límite la cantidad de documentos recuperados."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Una temperatura más baja reduce la aleatoriedad del muestreo, con lo que las respuestas son más repetibles y enfocadas. Aumentar la temperatura incrementa la variación y agregar contexto sin límite puede introducir contenido irrelevante."
+ },
+ {
+  "id": 36,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "¿Qué parámetro de inferencia limita la longitud de la respuesta generada por el modelo?",
+  "options": [
+   "La configuración de tokens máximos de salida.",
+   "La configuración de temperatura.",
+   "La configuración de top-p.",
+   "La configuración de rendimiento aprovisionado (provisioned throughput)."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El parámetro de tokens máximos de salida limita la longitud de la respuesta. La temperatura y top-p afectan la aleatoriedad, y el rendimiento aprovisionado influye en la capacidad y el precio, no en la longitud de la respuesta."
+ },
+ {
+  "id": 37,
+  "domain": 3,
+  "task": "3.2",
+  "type": "mc",
+  "stem": "Un prompt incluye una instrucción y dos ejemplos del formato de entrada y salida deseado antes de la solicitud real. ¿Qué técnica se está usando?",
+  "options": [
+   "Instrucción con pocos ejemplos (few-shot prompting).",
+   "Instrucción sin ejemplos (zero-shot prompting).",
+   "Cadena de pensamiento (chain-of-thought prompting).",
+   "Prompt negativo (negative prompting)."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Incluir una pequeña cantidad de ejemplos en el prompt es few-shot prompting. Resulta eficaz cuando el formato o el patrón de razonamiento requerido es más fácil de mostrar que de describir, mientras que zero-shot no incluye ejemplos."
+ },
+ {
+  "id": 38,
+  "domain": 3,
+  "task": "3.2",
+  "type": "mc",
+  "stem": "¿Qué técnica de ingeniería de prompts pide al modelo que recorra pasos intermedios de razonamiento antes de producir la respuesta final?",
+  "options": [
+   "Cadena de pensamiento (chain-of-thought prompting).",
+   "Prompt negativo (negative prompting).",
+   "Plantillas de prompts (prompt templating).",
+   "Caché de prompts (prompt caching)."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La cadena de pensamiento mejora los resultados en tareas analíticas de varios pasos porque hace explícito el razonamiento intermedio. Los prompts negativos excluyen contenido no deseado y las plantillas reutilizan la estructura del prompt."
+ },
+ {
+  "id": 39,
+  "domain": 3,
+  "task": "3.2",
+  "type": "mc",
+  "stem": "Un equipo quiere reutilizar el mismo prompt en varias aplicaciones, comparar revisiones y revertir un cambio que degradó la calidad. ¿Qué capacidad debería usar?",
+  "options": [
+   "Prompt Management de Amazon Bedrock.",
+   "Amazon Bedrock Guardrails.",
+   "AWS Config.",
+   "Amazon Inspector."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Prompt Management de Amazon Bedrock almacena los prompts de forma centralizada y admite versiones, de modo que los equipos pueden probar, comparar y revertir cambios en los prompts de forma independiente de los despliegues de la aplicación. Guardrails filtra contenido y no versiona prompts."
+ },
+ {
+  "id": 40,
+  "domain": 3,
+  "task": "3.2",
+  "type": "mc",
+  "stem": "Un usuario pega en un chatbot de atención al cliente un texto que le indica al bot ignorar sus reglas y revelar su prompt de sistema y su configuración interna. ¿Qué riesgo representa esto?",
+  "options": [
+   "Inyección de prompts (prompt injection).",
+   "Desviación de datos (data drift).",
+   "Subajuste (underfitting).",
+   "Destilación de modelos (model distillation)."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La inyección de prompts es un intento de anular las instrucciones de la aplicación mediante entradas manipuladas. Las defensas incluyen validación de entradas, barreras de protección (guardrails) y filtrado de la salida; además, el prompt de sistema nunca debe tratarse como un secreto."
+ },
+ {
+  "id": 41,
+  "domain": 3,
+  "task": "3.2",
+  "type": "mc",
+  "stem": "Un atacante inserta instrucciones ocultas en documentos que un sistema de RAG recupera después y envía al modelo. ¿Qué riesgo ilustra esto?",
+  "options": [
+   "Envenenamiento de prompts (prompt poisoning).",
+   "Desbalance de etiquetas.",
+   "Sobreajuste (overfitting).",
+   "Desbordamiento de tokens (token overflow)."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Como el contenido recuperado entra en el prompt, los documentos no confiables se convierten en una superficie de ataque. El envenenamiento de prompts explota esa ruta, por lo que conviene curar las fuentes documentales y tratar el contenido recuperado como datos no confiables."
+ },
+ {
+  "id": 42,
+  "domain": 3,
+  "task": "3.4",
+  "type": "mc",
+  "stem": "¿Qué métrica está diseñada para evaluar la calidad de un resumen midiendo la coincidencia entre el texto generado y uno o más resúmenes de referencia?",
+  "options": [
+   "ROUGE.",
+   "BLEU.",
+   "El error cuadrático medio (root mean squared error).",
+   "El área bajo la curva."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "ROUGE se centra en la recuperación del contenido de referencia y se usa comúnmente para evaluar resúmenes. BLEU se originó para la traducción automática, y las otras métricas corresponden a modelos de regresión o de clasificación."
+ },
+ {
+  "id": 43,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "¿Qué afirmación describe el papel de los agentes de IA en tareas de negocio de varios pasos?",
+  "options": [
+   "Planifican el trabajo, llaman herramientas o API y usan los resultados intermedios para alcanzar un objetivo con supervisión humana limitada.",
+   "Reemplazan toda la toma de decisiones humanas y no requieren supervisión.",
+   "Solo clasifican texto en categorías predefinidas.",
+   "Generan una sola respuesta y no pueden usar sistemas externos."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Los agentes descomponen un objetivo, seleccionan herramientas, ejecutan pasos y se adaptan según los resultados. La supervisión humana sigue siendo necesaria y el diseño debe incluir límites sobre las acciones que el agente puede realizar."
+ },
+ {
+  "id": 44,
+  "domain": 3,
+  "task": "3.4",
+  "type": "mc",
+  "stem": "¿Qué capacidad de AWS ofrece evaluación integrada de modelos fundacionales mediante conjuntos de datos curados y calificación automatizada, como un LLM como juez (LLM-as-a-judge)?",
+  "options": [
+   "Amazon Bedrock Model Evaluation.",
+   "AWS Trusted Advisor.",
+   "Amazon Lex.",
+   "AWS Budgets."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Amazon Bedrock Model Evaluation ejecuta evaluaciones automáticas y humanas con conjuntos de datos integrados o personalizados, lo que ayuda a comparar modelos y detectar regresiones antes del despliegue. AWS Trusted Advisor ofrece recomendaciones y AWS Budgets controla el gasto."
+ },
+ {
+  "id": 45,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mr",
+  "stem": "¿Qué DOS técnicas añaden información nueva al comportamiento de un modelo fundacional en el momento de la inferencia SIN cambiar los pesos del modelo? (Selecciona dos.)",
+  "options": [
+   "Generación aumentada por recuperación (RAG)",
+   "Aprendizaje en contexto (in-context learning)",
+   "Ajuste fino por instrucciones (instruction fine-tuning)",
+   "Preentrenamiento continuo",
+   "Destilación de modelos (model distillation)"
+  ],
+  "answers": [
+   0,
+   1
+  ],
+  "explain": "RAG entrega contenido recuperado en el prompt y el aprendizaje en contexto entrega instrucciones y ejemplos en el prompt. Ambos dejan el modelo sin cambios; el ajuste fino, el preentrenamiento continuo y la destilación modifican o producen pesos del modelo."
+ },
+ {
+  "id": 46,
+  "domain": 3,
+  "task": "3.1",
+  "type": "order",
+  "stem": "Ordene los pasos de una solicitud de generación aumentada por recuperación (RAG) en el orden correcto.",
+  "items": [
+   "Convertir la consulta del usuario en una incrustación (embedding)",
+   "Recuperar del almacén de vectores los fragmentos de documento más relevantes",
+   "Agregar los fragmentos recuperados al prompt como contexto",
+   "Enviar el prompt aumentado al modelo fundacional",
+   "Devolver la respuesta fundamentada con las citas de las fuentes"
+  ],
+  "explain": "La consulta se convierte en una incrustación, se recuperan los fragmentos similares, esos fragmentos se agregan al prompt, el modelo genera a partir del contexto aumentado y la respuesta se devuelve con citas que permiten al usuario verificar las fuentes."
+ },
+ {
+  "id": 47,
+  "domain": 3,
+  "task": "3.2",
+  "type": "match",
+  "stem": "Relacione cada técnica de ingeniería de prompts con su descripción.",
+  "pairs": [
+   [
+    "Instrucción sin ejemplos (zero-shot)",
+    "Una instrucción a la que no se le proporcionan ejemplos"
+   ],
+   [
+    "Instrucción con pocos ejemplos (few-shot)",
+    "Una instrucción con algunos pares de ejemplo de entrada y salida"
+   ],
+   [
+    "Cadena de pensamiento (chain-of-thought)",
+    "Una solicitud de razonar paso a paso antes de responder"
+   ],
+   [
+    "Prompt negativo",
+    "Una especificación de lo que no debe aparecer en la salida"
+   ],
+   [
+    "Plantilla de prompt",
+    "Una estructura de prompt reutilizable con marcadores de posición para variables"
+   ]
+  ],
+  "explain": "Zero-shot y few-shot se diferencian por la presencia de ejemplos, la cadena de pensamiento guía el razonamiento, los prompts negativos excluyen contenido no deseado y las plantillas hacen que los prompts sean reutilizables entre solicitudes."
+ },
+ {
+  "id": 48,
+  "domain": 4,
+  "task": "4.1",
+  "type": "mc",
+  "stem": "Un modelo de contratación tiene un buen desempeño general, pero produce resultados notablemente peores para un grupo demográfico. ¿Qué característica de la IA responsable se está incumpliendo?",
+  "options": [
+   "Equidad (fairness).",
+   "Latencia.",
+   "Escalabilidad.",
+   "Idempotencia."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La equidad exige que un sistema evite impactos dispares injustificados entre grupos. El análisis por subgrupos y los datos de entrenamiento representativos se usan para detectar y reducir este tipo de sesgo."
+ },
+ {
+  "id": 49,
+  "domain": 4,
+  "task": "4.1",
+  "type": "mc",
+  "stem": "Una empresa quiere bloquear contenido dañino, denegar temas específicos y ocultar información de identificación personal en una aplicación de IA generativa. ¿Qué capacidad debería usar?",
+  "options": [
+   "Amazon Bedrock Guardrails.",
+   "AWS Budgets.",
+   "Amazon CloudWatch Logs Insights.",
+   "AWS Trusted Advisor."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Amazon Bedrock Guardrails aplica filtros configurables, temas denegados, filtros de palabras y ocultamiento de información sensible tanto en la entrada como en la salida, de forma independiente del modelo subyacente. AWS Budgets controla el gasto y Trusted Advisor ofrece recomendaciones."
+ },
+ {
+  "id": 50,
+  "domain": 4,
+  "task": "4.1",
+  "type": "mc",
+  "stem": "Un modelo generativo produce textos de marketing que reproducen de cerca pasajes de material fuente protegido por derechos de autor. ¿Qué riesgo legal representa esto?",
+  "options": [
+   "Reclamaciones por infracción de propiedad intelectual.",
+   "Incumplimiento de la residencia de datos.",
+   "Agotamiento del rendimiento aprovisionado.",
+   "Desbordamiento de tokens (token overflow)."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La salida generativa puede reproducir sin intención contenido protegido y exponer a la organización a reclamaciones por propiedad intelectual. Las mitigaciones incluyen revisar la procedencia de los datos de entrenamiento, aplicar filtros de contenido y realizar revisión humana antes de publicar."
+ },
+ {
+  "id": 51,
+  "domain": 4,
+  "task": "4.1",
+  "type": "mc",
+  "stem": "¿Qué característica del conjunto de datos reduce más el riesgo de un comportamiento sesgado del modelo?",
+  "options": [
+   "Que el conjunto de datos sea representativo de las poblaciones que el modelo afectará y esté equilibrado entre los grupos relevantes.",
+   "Que el conjunto de datos contenga solo registros que confirman el resultado esperado.",
+   "Que el conjunto de datos sea lo más pequeño posible para reducir el tiempo de entrenamiento.",
+   "Que el conjunto de datos contenga solo los campos que fueron más fáciles de recopilar."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La representatividad y el equilibrio entre los grupos afectados son las características principales que reducen el sesgo. Filtrar solo registros que confirman lo esperado o reducir los datos al mínimo amplifica el sesgo y perjudica la generalización."
+ },
+ {
+  "id": 52,
+  "domain": 4,
+  "task": "4.1",
+  "type": "mc",
+  "stem": "¿Qué práctica ayuda a un equipo a detectar sesgo en un modelo en producción?",
+  "options": [
+   "Realizar análisis por subgrupos y auditorías humanas periódicas sobre las salidas del modelo.",
+   "Aumentar la cantidad máxima de tokens de salida.",
+   "Cambiar el almacén de vectores a otro motor.",
+   "Reducir la cantidad de Regiones que usa la cuenta."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Comparar resultados entre subgrupos, auditar con revisores humanos muestras de salidas reales y evaluar la calidad de las etiquetas son las formas prácticas de detectar sesgo. Las otras opciones afectan el costo o la capacidad, no la equidad."
+ },
+ {
+  "id": 53,
+  "domain": 4,
+  "task": "4.2",
+  "type": "mc",
+  "stem": "¿Qué herramienta ayuda a documentar el uso previsto de un modelo, las características de los datos de entrenamiento y los resultados de la evaluación, para que los revisores entiendan cómo se construyó el modelo?",
+  "options": [
+   "Amazon SageMaker Model Cards.",
+   "AWS Cost Explorer.",
+   "Amazon CloudFront.",
+   "AWS Secrets Manager."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Las tarjetas de modelo (Model Cards) de Amazon SageMaker AI registran el uso previsto, el linaje de los datos y los resultados de la evaluación en un documento estándar, lo que respalda la transparencia y la revisión. AWS Secrets Manager y AWS Cost Explorer tienen propósitos distintos."
+ },
+ {
+  "id": 54,
+  "domain": 4,
+  "task": "4.2",
+  "type": "mc",
+  "stem": "Una empresa publica los pesos de un modelo y todos los detalles de su entrenamiento para maximizar la transparencia. ¿Qué riesgo aumenta de forma más directa?",
+  "options": [
+   "Que actores malintencionados que obtengan el modelo puedan usarlo indebidamente o manipularlo.",
+   "Que el modelo ya no pueda producir salida de texto.",
+   "Que aumente el precio por token cobrado por el proveedor.",
+   "Que la disponibilidad del modelo por Región se restrinja de forma automática."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Existe una tensión real entre transparencia y seguridad: publicar los pesos y los detalles permite el escrutinio externo, pero también elimina barreras para el uso indebido, como el ajuste fino del modelo con fines dañinos."
+ },
+ {
+  "id": 55,
+  "domain": 4,
+  "task": "4.1",
+  "type": "mc",
+  "stem": "Un modelo logra una exactitud casi perfecta con los datos de entrenamiento, pero tiene un desempeño deficiente con datos nuevos que nunca vio. ¿Qué está ocurriendo?",
+  "options": [
+   "El modelo se está sobreajustando (overfitting) a los datos de entrenamiento.",
+   "El modelo se está subajustando (underfitting) a los datos de entrenamiento.",
+   "El modelo tiene varianza baja y sesgo alto.",
+   "El modelo necesita una ventana de contexto más grande."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El sobreajuste significa que el modelo memorizó el ruido y las particularidades del conjunto de entrenamiento en lugar de patrones generalizables. Las soluciones incluyen más datos o datos más variados, regularización y modelos más simples. El subajuste es el síntoma contrario: resultados deficientes tanto con los datos de entrenamiento como con datos nuevos."
+ },
+ {
+  "id": 56,
+  "domain": 4,
+  "task": "4.2",
+  "type": "mc",
+  "stem": "¿Qué práctica de diseño respalda una IA explicable centrada en las personas en una herramienta de apoyo a las decisiones?",
+  "options": [
+   "Mostrar los factores detrás de cada recomendación y ofrecer a los usuarios una forma de dar retroalimentación sobre las decisiones.",
+   "Ocultar el razonamiento del modelo para no confundir al operador.",
+   "Eliminar toda revisión humana para acelerar el procesamiento.",
+   "Mostrar solo el puntaje de confianza del modelo, sin contexto."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La explicabilidad centrada en las personas presenta el razonamiento en términos sobre los que el usuario puede actuar y cierra el ciclo con la retroalimentación del usuario, de modo que los operadores puedan cuestionar el sistema cuando algo parezca incorrecto."
+ },
+ {
+  "id": 57,
+  "domain": 5,
+  "task": "5.1",
+  "type": "mc",
+  "stem": "Una aplicación que se ejecuta en Amazon EC2 debe invocar Amazon Bedrock. ¿Qué enfoque sigue el principio de menor privilegio?",
+  "options": [
+   "Adjuntar a la instancia un rol de IAM con una política que permita únicamente las acciones necesarias sobre el modelo de Amazon Bedrock.",
+   "Almacenar claves de acceso de larga duración en el código fuente de la aplicación.",
+   "Otorgar a la instancia acceso de administrador a la cuenta de AWS.",
+   "Compartir las credenciales de un solo usuario de IAM en todos los entornos."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Un rol de IAM limitado al modelo y a las acciones específicas cumple el principio de menor privilegio y evita credenciales de larga duración. Las claves codificadas, el acceso de administrador y las credenciales compartidas amplían el alcance del impacto y dificultan la auditoría."
+ },
+ {
+  "id": 58,
+  "domain": 5,
+  "task": "5.1",
+  "type": "mc",
+  "stem": "Un equipo necesita descubrir si los buckets de Amazon S3 que alimentan un flujo de RAG contienen información de identificación personal. ¿Qué servicio debería usar?",
+  "options": [
+   "Amazon Macie.",
+   "Amazon Polly.",
+   "AWS Config.",
+   "Amazon Lex."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Amazon Macie usa coincidencia de patrones y aprendizaje automático para descubrir y clasificar datos sensibles, como la información de identificación personal, en Amazon S3. AWS Config supervisa el cumplimiento de la configuración de los recursos, no el contenido de los datos."
+ },
+ {
+  "id": 59,
+  "domain": 5,
+  "task": "5.1",
+  "type": "mc",
+  "stem": "¿Qué combinación describe correctamente la protección de los datos de un sistema de IA en reposo y en tránsito?",
+  "options": [
+   "Usar claves de AWS KMS para cifrar los datos almacenados y TLS para cifrar los datos en tránsito.",
+   "Usar TLS para los datos almacenados y AWS KMS para los datos en tránsito.",
+   "Usar Amazon CloudFront tanto para los datos almacenados como para los datos en tránsito.",
+   "Usar solo políticas de IAM, sin cifrado."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "AWS KMS administra las claves para el cifrado en reposo, mientras que TLS protege los datos en tránsito. IAM controla el acceso pero no cifra los datos, y el almacenamiento en caché de una red de entrega de contenido no tiene relación con el cifrado."
+ },
+ {
+  "id": 60,
+  "domain": 5,
+  "task": "5.1",
+  "type": "mc",
+  "stem": "Una auditoría requiere un registro de cada llamada a la API de Amazon Bedrock, incluido qué principal hizo la solicitud y cuándo. ¿Qué servicio proporciona esto?",
+  "options": [
+   "AWS CloudTrail.",
+   "AWS Trusted Advisor.",
+   "Amazon Comprehend.",
+   "AWS Artifact."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "AWS CloudTrail registra la actividad de las API con la identidad, la marca de tiempo y los detalles de la solicitud, lo que respalda las pistas de auditoría y las investigaciones. AWS Artifact proporciona informes de cumplimiento y AWS Trusted Advisor entrega recomendaciones."
+ },
+ {
+  "id": 61,
+  "domain": 5,
+  "task": "5.1",
+  "type": "mc",
+  "stem": "Los agentes que se ejecutan en producción deben autenticarse ante herramientas externas y recursos de AWS sin usar credenciales de larga duración incrustadas en el código. ¿Qué capacidad resuelve esto?",
+  "options": [
+   "Amazon Bedrock AgentCore Identity.",
+   "Los tableros de Amazon CloudWatch.",
+   "Amazon Textract.",
+   "AWS Budgets."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Amazon Bedrock AgentCore Identity proporciona gestión de identidades y credenciales diseñada para agentes y cargas de trabajo automatizadas, de modo que los agentes obtienen credenciales de alcance limitado y corta duración en lugar de secretos codificados."
+ },
+ {
+  "id": 62,
+  "domain": 5,
+  "task": "5.1",
+  "type": "mc",
+  "stem": "Un equipo de seguridad debe aplicar reglas deterministas sobre las acciones que los agentes pueden realizar, evaluadas en cada solicitud que pasa por una puerta de enlace, sin importar lo que decida el modelo. ¿Qué capacidad debería usar?",
+  "options": [
+   "Las políticas (Policy) en Amazon Bedrock AgentCore.",
+   "Una configuración de temperatura más alta.",
+   "El versionado de Amazon Bedrock Prompt Management.",
+   "Amazon Personalize."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Las políticas en Amazon Bedrock AgentCore interceptan el tráfico de los agentes en la puerta de enlace y evalúan cada solicitud contra políticas deterministas administradas de forma centralizada, lo que brinda control independiente del comportamiento del modelo. Las instrucciones en el prompt son orientación, no aplicación de reglas."
+ },
+ {
+  "id": 63,
+  "domain": 5,
+  "task": "5.1",
+  "type": "mc",
+  "stem": "Un asistente de cara al cliente debe resistir intentos de extraer datos sensibles mediante entradas manipuladas y no debe devolver contenido inseguro. ¿Qué combinación de controles es más apropiada?",
+  "options": [
+   "Validación de entradas, barreras de protección (guardrails) y filtrado o validación de la salida antes de devolver la respuesta.",
+   "Aumentar la cantidad máxima de tokens de salida del modelo.",
+   "Deshabilitar el registro para que los atacantes no puedan leer los registros.",
+   "Guardar el prompt de sistema en el repositorio de código fuente de la aplicación."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La defensa en profundidad para aplicaciones generativas combina validación de entradas, aplicación de guardrails y filtrado de la salida. El registro debe permanecer habilitado para la detección, y el prompt de sistema no debe tratarse como un secreto."
+ },
+ {
+  "id": 64,
+  "domain": 5,
+  "task": "5.2",
+  "type": "mr",
+  "stem": "¿Qué DOS servicios de AWS ayudan a una organización a demostrar gobernanza y cumplimiento normativo de sus cargas de trabajo de IA? (Selecciona dos.)",
+  "options": [
+   "AWS CloudTrail",
+   "AWS Config",
+   "Amazon Polly",
+   "Amazon Rekognition",
+   "Amazon Bedrock Guardrails"
+  ],
+  "answers": [
+   0,
+   1
+  ],
+  "explain": "AWS CloudTrail registra quién hizo qué y cuándo, y AWS Config evalúa la configuración de los recursos contra reglas y rastrea los cambios a lo largo del tiempo, lo que respalda las auditorías. Guardrails protege el contenido, pero no aporta evidencia de cumplimiento, y Amazon Polly y Amazon Rekognition no tienen un rol de gobernanza."
+ },
+ {
+  "id": 65,
+  "domain": 5,
+  "task": "5.2",
+  "type": "mc",
+  "stem": "¿Qué práctica respalda mejor la gobernanza consistente de un portafolio creciente de casos de uso de IA generativa?",
+  "options": [
+   "Aplicar un marco y una periodicidad de revisión definidos, asignar responsables y clasificar cada caso de uso por riesgo antes del despliegue.",
+   "Aprobar cada caso de uso nuevo por mensaje de chat y sin documentación.",
+   "Permitir que cada equipo defina sus propias reglas de retención y registro sin revisión.",
+   "Desplegar todos los casos de uso a la vez para acortar el ciclo de revisión."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La gobernanza escala mediante un marco documentado y una periodicidad de revisión, responsabilidades claras y clasificación de cada caso de uso por riesgo. Las aprobaciones improvisadas y las políticas por equipo sin revisión crean brechas que las auditorías detectarán más adelante."
+ }
+]

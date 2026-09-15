@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="utf-8">
+<title>Simuladores AIF-C01 · AWS Certified AI Practitioner</title>
+<style>
+    *{box-sizing:border-box}
+    :root{--r:12px;--r-sm:9px;
+      --fuente:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,"Helvetica Neue",sans-serif}
+    html[data-tema="oscuro"]{
+      --fondo:#0b0e14;--panel:#141922;--panel2:#1b2230;--borde:#2a3444;--borde2:#3d4a5c;
+      --texto:#eef2f8;--texto2:#a7b4c6;--acento:#ff9900;--acento-tinta:#1a1200;
+      --acento-suave:rgba(255,153,0,.15);--ok:#3ecf8e;--ok-suave:rgba(62,207,142,.14);
+      --mal:#ff7070;--mal-suave:rgba(255,112,112,.15);--aviso:#f2b134;
+      --sombra:0 1px 2px rgba(0,0,0,.5),0 10px 30px rgba(0,0,0,.30)}
+    html[data-tema="claro"]{
+      --fondo:#e9eef6;--panel:#ffffff;--panel2:#f3f6fb;--borde:#cfd9e6;--borde2:#aebdce;
+      --texto:#0f1826;--texto2:#48586e;--acento:#b85c00;--acento-tinta:#ffffff;
+      --acento-suave:rgba(255,153,0,.18);--ok:#0a7245;--ok-suave:rgba(10,114,69,.12);
+      --mal:#a8231c;--mal-suave:rgba(168,35,28,.10);--aviso:#8a5a00;
+      --sombra:0 1px 2px rgba(16,24,40,.07),0 10px 26px rgba(16,24,40,.10)}
+    body{margin:0;background:var(--fondo);color:var(--texto);font-family:var(--fuente);
+      font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+    ::selection{background:var(--acento-suave)}
+    :focus-visible{outline:2px solid var(--acento);outline-offset:2px;border-radius:6px}
+    .topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;
+      padding:9px 16px;background:color-mix(in srgb,var(--fondo) 88%,transparent);
+      backdrop-filter:blur(8px);border-bottom:1px solid var(--borde)}
+    .marca{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--texto2);font-weight:650}
+    .marca b{color:var(--texto);letter-spacing:0}
+    .app{max-width:960px;margin:0 auto;padding:20px 16px 60px}
+    h1{font-size:21px;line-height:1.25;margin:0 0 4px;letter-spacing:-.01em}
+    h2{font-size:15px;margin:0 0 10px;letter-spacing:.01em}
+    .muted{color:var(--texto2);font-size:13px}
+    .card{border:1px solid var(--borde);border-radius:var(--r);padding:16px 18px;
+      background:var(--panel);box-shadow:var(--sombra);margin:12px 0}
+    button{font-family:inherit;font-size:14px;cursor:pointer;border:1px solid var(--borde);
+      background:var(--panel2);color:var(--texto);border-radius:var(--r-sm);padding:9px 15px;
+      transition:background .15s,border-color .15s,filter .15s}
+    button:hover{border-color:var(--borde2)}
+    button.primary{background:var(--acento);color:var(--acento-tinta);border-color:transparent;font-weight:650}
+    button.primary:hover{filter:brightness(1.07)}
+    button.ghost{background:transparent}
+    button.mini{padding:6px 11px;font-size:13px}
+    button:disabled{opacity:.4;cursor:not-allowed}
+    .row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+    .spacer{flex:1}
+    .tag{font-size:12px;color:var(--texto2);border:1px solid var(--borde);border-radius:999px;
+      padding:3px 10px;background:var(--panel2);white-space:nowrap}
+    .timer{font-variant-numeric:tabular-nums;font-weight:750;font-size:16px}
+    .timer.low{color:var(--mal)}
+    .barra{position:sticky;top:44px;z-index:15;margin:-4px -2px 12px;padding:10px 12px;
+      border:1px solid var(--borde);border-radius:var(--r);background:color-mix(in srgb,var(--panel) 94%,transparent);
+      backdrop-filter:blur(8px);box-shadow:var(--sombra)}
+    .seg{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--borde);border-radius:12px;background:var(--panel2)}
+    .seg-btn{border-color:transparent;background:transparent;border-radius:9px;padding:8px 14px}
+    .seg-btn.active{background:var(--panel);border-color:var(--acento);font-weight:650}
+    .examcard{position:relative;border:1px solid var(--borde);border-radius:var(--r);padding:13px 16px 13px 18px;
+      margin:9px 0;cursor:pointer;background:var(--panel2);transition:border-color .15s,background .15s}
+    .examcard:hover{border-color:var(--borde2)}
+    .examcard.on{border-color:var(--acento);background:var(--acento-suave)}
+    .examcard.on::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;
+      border-radius:3px;background:var(--acento)}
+    .opt{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--borde);border-radius:var(--r-sm);
+      padding:11px 13px;margin:8px 0;cursor:pointer;background:var(--panel2);transition:border-color .15s,background .15s}
+    .opt:hover{border-color:var(--borde2)}
+    .opt .idx{display:inline-flex;align-items:center;justify-content:center;flex:0 0 25px;height:25px;border-radius:7px;
+      background:var(--fondo);border:1px solid var(--borde);font-weight:750;font-size:12.5px;color:var(--texto2)}
+    .opt.sel{border-color:var(--acento);background:var(--acento-suave)}
+    .opt.sel .idx{background:var(--acento);color:var(--acento-tinta);border-color:transparent}
+    .opt.correct{border-color:var(--ok);background:var(--ok-suave)}
+    .opt.incorrect{border-color:var(--mal);background:var(--mal-suave)}
+    .palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:7px}
+    .pbtn{padding:7px 0;font-size:13px;text-align:center;background:var(--panel2)}
+    .pbtn.done{border-color:var(--acento);font-weight:750;color:var(--acento)}
+    .pbtn.flag{border-color:var(--aviso);color:var(--aviso)}
+    .pbtn.cur{outline:2px solid var(--acento);outline-offset:1px}
+    table{border-collapse:collapse;width:100%;font-size:14px}
+    th,td{border-bottom:1px solid var(--borde);padding:9px 10px;text-align:left;vertical-align:top}
+    th{font-weight:650;color:var(--texto2);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em}
+    tr:hover td{background:var(--panel2)}
+    .anillo{--c:var(--acento);width:136px;height:136px;flex:0 0 136px;border-radius:50%;
+      background:conic-gradient(var(--c) calc(var(--p)*1%),var(--borde) 0);display:grid;place-items:center}
+    .anillo.ok{--c:var(--ok)} .anillo.bad{--c:var(--mal)}
+    .anillo>div{width:108px;height:108px;border-radius:50%;background:var(--panel);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1}
+    .score{font-size:30px;font-weight:800;font-variant-numeric:tabular-nums}
+    .veredicto{font-size:19px;font-weight:750;letter-spacing:.02em}
+    .pass{color:var(--ok)} .fail{color:var(--mal)}
+    .exp{border-left:3px solid var(--acento);padding:6px 0 6px 13px;margin-top:12px;font-size:14px;color:var(--texto2)}
+    .exp strong{color:var(--texto)}
+    select{font-family:inherit;font-size:14px;padding:8px 10px;border-radius:var(--r-sm);
+      border:1px solid var(--borde);background:var(--panel2);color:var(--texto);max-width:100%}
+    .pair{display:grid;grid-template-columns:1fr 1fr;gap:11px;align-items:center;margin:8px 0}
+    .pair>span:first-child{font-size:14px}
+    .seqitem{display:flex;gap:11px;align-items:center;border:1px solid var(--borde);border-radius:var(--r-sm);
+      padding:10px 13px;margin:7px 0;cursor:pointer;background:var(--panel2);transition:border-color .15s,background .15s}
+    .seqitem:hover{border-color:var(--borde2)}
+    .seqitem.picked{border-color:var(--acento);background:var(--acento-suave)}
+    .slot{display:inline-flex;align-items:center;justify-content:center;flex:0 0 25px;height:25px;border-radius:7px;
+      background:var(--fondo);border:1px solid var(--borde);font-weight:750;font-size:12.5px;color:var(--texto2)}
+    .seqitem.picked .slot{background:var(--acento);color:var(--acento-tinta);border-color:transparent}
+    .pill{display:inline-block;font-size:11.5px;font-weight:650;border-radius:999px;padding:2px 10px;
+      border:1px solid var(--borde);color:var(--texto2)}
+    .pill.ok{color:var(--ok);border-color:var(--ok);background:var(--ok-suave)}
+    .pill.bad{color:var(--mal);border-color:var(--mal);background:var(--mal-suave)}
+    .banner{border:1px solid var(--aviso);border-radius:var(--r-sm);padding:11px 13px;font-size:13.5px;margin:12px 0;color:var(--texto)}
+    textarea{width:100%;min-height:96px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+      padding:10px;border-radius:var(--r-sm);border:1px solid var(--borde);background:var(--panel2);color:var(--texto)}
+    ul{margin:6px 0 0 18px;padding:0} li{margin:3px 0}
+    .bar{height:9px;border-radius:99px;background:var(--borde);overflow:hidden;min-width:90px}
+    .bar>i{display:block;height:100%;border-radius:99px;background:var(--acento)}
+    .bar.ok>i{background:var(--ok)} .bar.bad>i{background:var(--mal)}
+    .prog{display:flex;gap:6px;flex-wrap:wrap}
+    .prog span{font-size:12px;font-variant-numeric:tabular-nums;border:1px solid var(--borde);border-radius:999px;
+      padding:3px 10px;background:var(--panel2)}
+    .prog span.ok{border-color:var(--ok);color:var(--ok)} .prog span.bad{border-color:var(--mal);color:var(--mal)}
+    hr{border:0;border-top:1px solid var(--borde);margin:16px 0}
+    @media (max-width:640px){.pair{grid-template-columns:1fr}.card{padding:14px}.barra{top:40px}
+      .anillo{width:112px;height:112px;flex-basis:112px}.anillo>div{width:88px;height:88px}.score{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="marca">AWS Certified AI Practitioner · <b>AIF-C01</b></span>
+  <span class="spacer"></span>
+  <button id="btnTema" class="mini ghost" title="Cambiar entre tema claro y oscuro">Tema</button>
+</div>
+<div class="app" id="app"></div>
+<script>
+const EXAMS = __EXAMS_JSON__;
+const DOMAINS = {
+  1:{n:"Dominio 1 — Fundamentos de IA y ML", w:20},
+  2:{n:"Dominio 2 — Fundamentos de IA generativa", w:24},
+  3:{n:"Dominio 3 — Aplicaciones de modelos fundacionales", w:28},
+  4:{n:"Dominio 4 — Directrices de IA responsable", w:14},
+  5:{n:"Dominio 5 — Seguridad, cumplimiento y gobernanza", w:14}
+};
+const EXAM_MINUTES = 90, PASS_SCALED = 700, STORE_KEY = "aifC01.intentos.v1";
+
+/* ---------- almacenamiento local ---------- */
+const store = (()=>{
+  let ok=true, mem=[];
+  try { localStorage.setItem("__t","1"); localStorage.removeItem("__t"); } catch(e){ ok=false; }
+  function read(){ if(!ok) return mem.slice();
+    try { const raw=localStorage.getItem(STORE_KEY); return raw? JSON.parse(raw) : []; } catch(e){ return mem.slice(); } }
+  function write(list){ mem=list.slice();
+    if(!ok) return true;
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(list)); return true; } catch(e){ return false; } }
+  return { ok, read, write };
+})();
+
+/* ---------- utilidades ---------- */
+function rng(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; let t=Math.imul(seed^seed>>>15,1|seed);
+  t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function shuffled(n, seed){ const a=[...Array(n).keys()], r=rng(seed);
+  for(let i=n-1;i>0;i--){ const j=Math.floor(r()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+const ORDER_VIEW={}, MATCH_VIEW={};
+EXAMS.forEach(ex=>ex.questions.forEach(q=>{
+  const k=ex.id+"#"+q.id;
+  if(q.type==="order") ORDER_VIEW[k]=shuffled(q.items.length, q.id*7919+3);
+  if(q.type==="match") MATCH_VIEW[k]=shuffled(q.pairs.length, q.id*104729+7);
+}));
+function key(q){ return S.exam.id+"#"+q.id; }
+function fmt(s){ const m=Math.floor(s/60), x=s%60; return String(m).padStart(2,"0")+":"+String(x).padStart(2,"0"); }
+function num(i){ return ["A","B","C","D","E","F"][i]; }
+function fecha(ts){ const d=new Date(ts); return d.toLocaleDateString()+" "+d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"}); }
+function pct(c,t){ return t? Math.round(100*c/t) : 0; }
+
+/* ---------- estado ---------- */
+let S=null, INICIO={examId:"A", modo:"examen"};
+function estadoInicial(){ return { exam:null, modo:"examen", view:"inicio", cur:0, ans:{}, flags:new Set(),
+  tLeft:EXAM_MINUTES*60, timer:null, onlyWrong:false, saved:false, started:0, guardadoOk:null }; }
+function qs(){ return S.exam.questions; }
+function answered(q){ const a=S.ans[key(q)]; if(!a) return false;
+  if(q.type==="mc"||q.type==="mr") return a.sel.length>0;
+  if(q.type==="order") return a.seq.length===q.items.length;
+  return Object.keys(a.map).length===q.pairs.length; }
+function isCorrect(q){ const a=S.ans[key(q)]; if(!a) return false;
+  if(q.type==="mc"||q.type==="mr"){ return [...a.sel].sort((x,y)=>x-y).join(",") === [...q.answers].sort((x,y)=>x-y).join(","); }
+  if(q.type==="order") return a.seq.every((v,i)=>v===i);
+  return q.pairs.every((p,i)=>a.map[i]===i); }
+function correctas(){ return qs().filter(isCorrect).length; }
+function escalado(raw,total){ return Math.round(100 + 900*raw/total); }
+
+/* ---------- vistas ---------- */
+function render(){
+  const app=document.getElementById("app");
+  app.innerHTML = S.view==="inicio" ? inicioHTML() : S.view==="examen" ? examenHTML()
+                : S.view==="resultado" ? resultadoHTML() : historialHTML();
+  bind();
+}
+function inicioHTML(){
+  const hist=store.read().slice().sort((a,b)=>b.ts-a.ts);
+  const cards=EXAMS.map(ex=>{
+    const mios=hist.filter(a=>a.examId===ex.id);
+    const mejor=mios.length? Math.max(...mios.map(a=>a.puntaje)) : null;
+    const ult=mios.length? mios[0] : null;
+    return `<div class="examcard${INICIO.examId===ex.id?" on":""}" data-pickexam="${ex.id}">
+      <div class="row"><strong>${ex.name}</strong><span class="spacer"></span>
+        <span class="tag">${ex.questions.length} preguntas</span></div>
+      <div class="muted" style="margin-top:4px">${ex.desc}</div>
+      <div class="muted" style="margin-top:6px">${mios.length? `Intentos: ${mios.length} · mejor puntaje: ${mejor} · último: ${ult.puntaje} (${fecha(ult.ts)})` : "Sin intentos todavía"}</div>
+    </div>`; }).join("");
+  const aviso = store.ok? "" : `<div class="banner"><strong>Tu navegador está bloqueando localStorage</strong>, así que los intentos de esta sesión
+    se guardan solo en memoria y se pierden al cerrar. Si abres el archivo con Chrome o dentro de la app, el historial sí persiste.
+    Usa el botón Exportar del historial para no perder nada.</div>`;
+  return `<h1>Simuladores · AWS Certified AI Practitioner (AIF-C01)</h1>
+    <p class="muted">4 exámenes de 65 preguntas · pesos del blueprint 20/24/28/14/14 · escala 100–1000 con corte en 700 · contenido en español</p>
+    ${aviso}
+    <div class="card"><h2 style="margin-top:0">1. Elige el examen</h2>${cards}
+      <p class="muted" style="margin-bottom:0">Los cuatro exámenes cubren el mismo blueprint con escenarios distintos. No repiten preguntas entre sí.</p></div>
+    <div class="card"><h2 style="margin-top:0">2. Elige el modo</h2>
+      <div class="seg">
+        <button class="seg-btn${INICIO.modo==="examen"?" active":""}" data-pickmode="examen">Examen simulado · 90 minutos</button>
+        <button class="seg-btn${INICIO.modo==="estudio"?" active":""}" data-pickmode="estudio">Estudio · tiempo ilimitado con explicación</button>
+      </div>
+      <p class="muted" style="margin-top:10px">En modo examen no ves ninguna explicación hasta enviar, igual que el examen real. En modo estudio no hay cronómetro
+      y después de cada respuesta ves de inmediato la correcta y el porqué.</p>
+      <div class="row"><button class="primary" data-start="1">Comenzar</button>
+        <span class="muted">${hist.length? `${hist.length} intento(s) guardado(s)` : "Aún no hay intentos guardados"}</span></div>
+    </div>
+    <div class="row"><button data-view="historial">Ver historial de intentos</button></div>`;
+}
+function examenHTML(){
+  const q=qs()[S.cur], k=key(q), a=S.ans[k];
+  let body="";
+  if(q.type==="mc"||q.type==="mr"){
+    const sel=new Set((a&&a.sel)||[]);
+    body=q.options.map((o,i)=>`<div class="opt${sel.has(i)?" sel":""}" data-opt="${i}"><span class="idx">${num(i)}</span><span>${o}</span></div>`).join("");
+    if(q.type==="mr") body=`<p class="muted">Selecciona todas las que apliquen. No hay puntaje parcial.</p>`+body;
+  } else if(q.type==="order"){
+    const seq=(a&&a.seq)||[];
+    body=`<p class="muted">Haz clic en los pasos en el orden correcto. Vuelve a hacer clic para quitar uno.</p>`+
+      ORDER_VIEW[k].map(v=>{ const pos=seq.indexOf(v);
+        return `<div class="seqitem${pos>=0?" picked":""}" data-seq="${v}"><span class="slot">${pos>=0?pos+1:"–"}</span><span>${q.items[v]}</span></div>`; }).join("");
+  } else {
+    const map=(a&&a.map)||{};
+    body=`<p class="muted">Cada respuesta se usa a lo más una vez.</p>`+
+      q.pairs.map((p,i)=>{ const opts=`<option value="-1">— selecciona —</option>`+
+        MATCH_VIEW[k].map(r=>`<option value="${r}"${map[i]===r?" selected":""}>${q.pairs[r][1]}</option>`).join("");
+        return `<div class="pair"><span>${p[0]}</span><select data-match="${i}">${opts}</select></div>`; }).join("");
+  }
+  let feedback="";
+  if(S.modo==="estudio" && answered(q)){
+    const ok=isCorrect(q);
+    feedback=`<div class="exp"><span class="pill ${ok?"ok":"bad"}">${ok?"Correcta":"Incorrecta"}</span>
+      <p style="margin:8px 0 0"><strong>Por qué:</strong> ${q.explain}</p></div>`;
+  }
+  const hechas=qs().filter(answered).length;
+  const pal=qs().map((x,i)=>`<button class="pbtn${answered(x)?" done":""}${S.flags.has(key(x))?" flag":""}${i===S.cur?" cur":""}" data-jump="${i}">${i+1}</button>`).join("");
+  return `<div class="barra"><div class="row"><h1 style="margin:0;font-size:17px">${S.exam.name}</h1><span class="spacer"></span>
+      <span class="timer${S.tLeft<600?" low":""}">${S.modo==="examen"?fmt(S.tLeft):"sin límite"}</span>
+      <span class="tag">${hechas}/${qs().length}</span>
+      <button class="primary mini" data-submit="1">Enviar</button></div></div>
+    <div class="card">
+      <div class="row"><span class="tag">Pregunta ${S.cur+1} de ${qs().length}</span>
+        <span class="tag">${DOMAINS[q.domain].n}</span><span class="tag">Tarea ${q.task}</span>
+        <span class="spacer"></span>
+        <button class="ghost mini" data-flag="1">${S.flags.has(k)?"Quitar marca":"Marcar para repasar"}</button></div>
+      <p style="font-weight:600;margin:12px 0 4px">${q.stem}</p>
+      ${body}${feedback}
+      <div class="row" style="margin-top:14px">
+        <button data-nav="-1"${S.cur===0?" disabled":""}>Anterior</button>
+        <button data-nav="1"${S.cur===qs().length-1?" disabled":""}>Siguiente</button>
+      </div>
+    </div>
+    <div class="card"><h2 style="margin-top:0">Navegador de preguntas</h2><div class="palette">${pal}</div></div>`;
+}
+function resultadoHTML(){
+  const total=qs().length, raw=correctas(), sc=escalado(raw,total), pass=sc>=PASS_SCALED;
+  const per={}; qs().forEach(q=>{ per[q.domain]=per[q.domain]||{c:0,t:0,tareas:new Set()};
+    per[q.domain].t++; if(isCorrect(q)) per[q.domain].c++; else per[q.domain].tareas.add(q.task); });
+  const filas=Object.keys(per).sort().map(d=>{ const v=per[d];
+    return `<tr><td>${DOMAINS[d].n}<div class="muted">${DOMAINS[d].w}% del contenido puntuable</div></td>
+      <td style="white-space:nowrap">${v.c} / ${v.t}</td><td style="width:110px"><div class="bar ${pct(v.c,v.t)>=70?"ok":"bad"}"><i style="width:${pct(v.c,v.t)}%"></i></div>
+      <span class="muted">${pct(v.c,v.t)}%</span></td>
+      <td>${v.tareas.size? [...v.tareas].sort().join(", ") : '<span class="pass">sin pendientes</span>'}</td></tr>`; }).join("");
+  const lista=qs().filter(q=>S.onlyWrong?!isCorrect(q):true).map(q=>{
+    const ok=isCorrect(q), a=S.ans[key(q)]||{};
+    let tuya="Sin responder", buena="";
+    if(q.type==="mc"||q.type==="mr"){
+      tuya=(a.sel&&a.sel.length)? [...a.sel].sort((x,y)=>x-y).map(i=>num(i)).join(", ") : "Sin responder";
+      buena=[...q.answers].sort((x,y)=>x-y).map(i=>`${num(i)}. ${q.options[i]}`).join(" | ");
+    } else if(q.type==="order"){
+      tuya=(a.seq&&a.seq.length)? a.seq.map(v=>q.items[v]).join(" → ") : "Sin responder";
+      buena=q.items.join(" → ");
+    } else {
+      tuya=q.pairs.map((p,i)=>`${p[0]} → ${(a.map&&a.map[i]!==undefined)? q.pairs[a.map[i]][1] : "—"}`).join("; ");
+      buena=q.pairs.map(p=>`${p[0]} → ${p[1]}`).join("; ");
+    }
+    return `<div class="card"><div class="row"><span class="pill ${ok?"ok":"bad"}">${ok?"Correcta":"Incorrecta"}</span>
+      <span class="tag">Tarea ${q.task}</span><span class="muted">${DOMAINS[q.domain].n}</span></div>
+      <p style="font-weight:600;margin:10px 0 4px">${q.stem}</p>
+      <p class="muted" style="margin:4px 0"><strong>Tu respuesta:</strong> ${tuya}</p>
+      <p class="muted" style="margin:4px 0"><strong>Respuesta correcta:</strong> ${buena}</p>
+      <div class="exp">${q.explain}</div></div>`; }).join("");
+  const avisoGuardado = S.saved? (S.guardadoOk===false?
+      `<div class="banner">No pude escribir en localStorage. Exporta el historial para conservar este intento.</div>` :
+      `<div class="muted">Intento guardado en tu historial · ${store.read().length} intento(s) en total.</div>`) : "";
+  return `<h1>Resultado · ${S.exam.name}</h1>
+    ${avisoGuardado}
+    <div class="card"><div class="row" style="gap:22px;flex-wrap:nowrap;align-items:center">
+      <div class="anillo ${pass?"ok":"bad"}" style="--p:${Math.round((sc-100)/900*100)}">
+        <div><span class="score ${pass?"pass":"fail"}">${sc}</span><span class="muted" style="font-size:11px">de 1000</span></div>
+      </div>
+      <div>
+        <div class="veredicto ${pass?"pass":"fail"}">${pass?"APROBADO":"NO APROBADO"}</div>
+        <div class="muted" style="margin-top:4px">${raw} de ${total} correctas · corte en 700 · modo ${S.modo==="examen"?"examen (90 min)":"estudio sin límite"}</div>
+        <div class="muted" style="margin-top:8px">El puntaje escalado es una aproximación: AWS no publica cuántas respuestas correctas equivalen a 700. Aquí 44 de 65 cae justo en el umbral.</div>
+      </div></div>
+    </div>
+    <div class="card"><h2 style="margin-top:0">Desempeño por dominio</h2>
+      <table><tr><th>Dominio</th><th>Correctas</th><th></th><th>Tareas por repasar</th></tr>${filas}</table>
+      <p class="muted" style="margin-top:10px">El examen usa puntaje compensatorio: no necesitas aprobar cada dominio, solo el examen completo.
+      Usa la última columna para dirigir tu repaso en lugar de releer todo.</p></div>
+    <div class="row" style="margin:16px 0">
+      <button data-toggle="1">${S.onlyWrong?`Mostrar las ${total} preguntas`:"Mostrar solo las incorrectas"}</button>
+      <button data-home="1">Volver al inicio</button>
+      <button class="primary" data-retry="1">Repetir este examen</button></div>
+    <h2>Revisión de respuestas</h2>${lista}`;
+}
+function historialHTML(){
+  const hist=store.read().slice().sort((a,b)=>a.ts-b.ts);
+  if(!hist.length) return `<h1>Historial</h1><div class="card">Todavía no has terminado ningún intento.
+    <div class="row" style="margin-top:12px"><button data-home="1">Volver al inicio</button></div></div>
+    <div class="card"><h2 style="margin-top:0">Respaldo</h2>
+      <p class="muted">Si tienes un historial exportado antes, pégalo en el cuadro y presiona Importar.</p>
+      <textarea id="exportbox"></textarea>
+      <div class="row" style="margin-top:8px"><button data-import="1">Importar desde el cuadro</button></div></div>`;
+  const filas=hist.slice().reverse().map((a,i)=>`<tr>
+      <td>${fecha(a.ts)}</td><td>${a.examName}</td>
+      <td>${a.modo==="examen"?"Examen (90 min)":"Estudio"}</td>
+      <td>${a.correctas} / ${a.total}</td>
+      <td class="${a.aprobado?"pass":"fail"}"><strong>${a.puntaje}</strong></td>
+      <td>${a.aprobado?"Sí":"No"}</td>
+      <td>${a.duracionSeg!=null? fmt(a.duracionSeg) : "—"}</td></tr>`).join("");
+  const proges=hist.map((a,i)=>`<span class="${a.aprobado?"ok":"bad"}">${i+1} · ${a.examId} · ${a.puntaje}</span>`).join("");
+  const domAgg={};
+  hist.forEach(a=>{ Object.keys(a.porDominio||{}).forEach(d=>{ const v=a.porDominio[d];
+    domAgg[d]=domAgg[d]||{c:0,t:0}; domAgg[d].c+=v.c; domAgg[d].t+=v.t; }); });
+  const domFilas=Object.keys(domAgg).sort().map(d=>{ const v=domAgg[d], p=pct(v.c,v.t);
+    const veredicto = p>=80? "sólido" : p>=70? "suficiente, con margen corto" : "es tu área débil";
+    return `<tr><td>${DOMAINS[d].n}</td><td>${v.c} / ${v.t}</td>
+      <td style="width:130px"><div class="bar ${p>=70?"ok":"bad"}"><i style="width:${p}%"></i></div><span class="muted">${p}%</span></td>
+      <td>${veredicto}</td></tr>`; }).join("");
+  const conocidos=new Set(EXAMS.map(e=>e.id));
+  const otros=[...new Set(hist.map(a=>a.examId))].filter(id=>!conocidos.has(id));
+  const porExamen=EXAMS.map(ex=>{ const m=hist.filter(a=>a.examId===ex.id);
+    if(!m.length) return `<tr><td>${ex.name}</td><td>—</td><td>—</td><td>aún no lo haces</td></tr>`;
+    const mejor=Math.max(...m.map(a=>a.puntaje)), ult=m[m.length-1];
+    return `<tr><td>${ex.name}</td><td>${m.length}</td><td><strong>${mejor}</strong></td>
+      <td>último: ${ult.puntaje} (${fecha(ult.ts)})</td></tr>`; }).join("")
+    + otros.map(id=>{ const m=hist.filter(a=>a.examId===id);
+      return `<tr><td>Examen ${id} <span class="muted">(de un respaldo que no está en esta versión)</span></td>
+        <td>${m.length}</td><td><strong>${Math.max(...m.map(a=>a.puntaje))}</strong></td>
+        <td>último: ${m[m.length-1].puntaje} (${fecha(m[m.length-1].ts)})</td></tr>`; }).join("");
+  return `<h1>Historial de intentos</h1>
+    <div class="card"><h2 style="margin-top:0">Progresión</h2>
+      <p class="muted">Cada etiqueta es un intento terminado, en orden: número · examen · puntaje.</p>
+      <div class="prog">${proges}</div></div>
+    <div class="card"><h2 style="margin-top:0">Intentos</h2>
+      <table><tr><th>Fecha</th><th>Examen</th><th>Modo</th><th>Correctas</th><th>Puntaje</th><th>Aprobado</th><th>Tiempo</th></tr>${filas}</table></div>
+    <div class="card"><h2 style="margin-top:0">Por examen</h2>
+      <table><tr><th>Examen</th><th>Intentos</th><th>Mejor</th><th>Último</th></tr>${porExamen}</table></div>
+    <div class="card"><h2 style="margin-top:0">Por dominio, sumando todos los intentos</h2>
+      <table><tr><th>Dominio</th><th>Correctas</th><th></th><th>Lectura</th></tr>${domFilas}</table>
+      <p class="muted" style="margin-top:10px">Si un dominio se queda por debajo de 70% acumulado, ese es el que manda en tu repaso: en el blueprint pesa
+      lo que dice la segunda columna de la vista de resultados.</p></div>
+    <div class="card"><h2 style="margin-top:0">Respaldo</h2>
+      <p class="muted">Exporta para guardar tu historial fuera del navegador, o pega uno exportado y presiona Importar.</p>
+      <textarea id="exportbox">${JSON.stringify(hist, null, 1)}</textarea>
+      <div class="row" style="margin-top:8px"><button data-import="1">Importar desde el cuadro</button>
+        <button data-clear="1">Borrar historial</button><button data-home="1">Volver al inicio</button></div></div>`;
+}
+
+/* ---------- eventos ---------- */
+function bind(){
+  const q=()=>qs()[S.cur];
+  document.querySelectorAll("[data-pickexam]").forEach(el=>el.onclick=()=>{ INICIO.examId=el.dataset.pickexam; render(); });
+  document.querySelectorAll("[data-pickmode]").forEach(el=>el.onclick=()=>{ INICIO.modo=el.dataset.pickmode; render(); });
+  document.querySelectorAll("[data-start]").forEach(el=>el.onclick=()=>empezar());
+  document.querySelectorAll("[data-view]").forEach(el=>el.onclick=()=>{ S.view=el.dataset.view; window.scrollTo(0,0); render(); });
+  document.querySelectorAll("[data-home]").forEach(el=>el.onclick=()=>{ if(S.timer) clearInterval(S.timer); S=estadoInicial(); window.scrollTo(0,0); render(); });
+  document.querySelectorAll("[data-retry]").forEach(el=>el.onclick=()=>{ const ex=S.exam, modo=S.modo;
+    if(S.timer) clearInterval(S.timer); S=estadoInicial(); S.modo=modo; arrancar(ex); });
+  document.querySelectorAll("[data-toggle]").forEach(el=>el.onclick=()=>{ S.onlyWrong=!S.onlyWrong; render(); });
+  document.querySelectorAll("[data-submit]").forEach(el=>el.onclick=()=>enviar(false));
+  document.querySelectorAll("[data-nav]").forEach(el=>el.onclick=()=>{ S.cur+= +el.dataset.nav; render(); });
+  document.querySelectorAll("[data-flag]").forEach(el=>el.onclick=()=>{ const k=key(q()); S.flags.has(k)?S.flags.delete(k):S.flags.add(k); render(); });
+  document.querySelectorAll("[data-jump]").forEach(el=>el.onclick=()=>{ S.cur=+el.dataset.jump; render(); });
+  document.querySelectorAll("[data-opt]").forEach(el=>el.onclick=()=>{ const cur=q(), k=key(cur), i=+el.dataset.opt;
+    const a=S.ans[k]||(S.ans[k]={sel:[]});
+    if(cur.type==="mc") a.sel=[i]; else { const p=a.sel.indexOf(i); p>=0? a.sel.splice(p,1): a.sel.push(i); }
+    render(); });
+  document.querySelectorAll("[data-seq]").forEach(el=>el.onclick=()=>{ const cur=q(), k=key(cur), v=+el.dataset.seq;
+    const a=S.ans[k]||(S.ans[k]={seq:[]}); const p=a.seq.indexOf(v); p>=0? a.seq.splice(p,1): a.seq.push(v); render(); });
+  document.querySelectorAll("[data-match]").forEach(el=>el.onchange=()=>{ const cur=q(), k=key(cur), i=+el.dataset.match;
+    const a=S.ans[k]||(S.ans[k]={map:{}}); const v=+el.value;
+    if(v<0) delete a.map[i]; else { for(const kk in a.map) if(kk!==String(i)&&a.map[kk]===v) delete a.map[kk]; a.map[i]=v; } render(); });
+  document.querySelectorAll("[data-clear]").forEach(el=>el.onclick=()=>{ if(confirm("¿Borrar todos los intentos guardados?")){ store.write([]); render(); } });
+  document.querySelectorAll("[data-import]").forEach(el=>el.onclick=()=>{
+    try { const arr=JSON.parse(document.getElementById("exportbox").value);
+      if(!Array.isArray(arr)) throw new Error("no es una lista");
+      const actual=store.read(), vistos=new Set(actual.map(a=>a.ts+"|"+a.examId+"|"+a.puntaje));
+      let n=0; arr.forEach(a=>{ const k=a.ts+"|"+a.examId+"|"+a.puntaje; if(!vistos.has(k)){ actual.push(a); vistos.add(k); n++; } });
+      store.write(actual); alert(`Importados ${n} intento(s) nuevos.`); render();
+    } catch(e){ alert("No pude leer el JSON del cuadro: "+e.message); } });
+}
+function empezar(){ S=estadoInicial(); S.modo=INICIO.modo; arrancar(EXAMS.find(e=>e.id===INICIO.examId)); }
+function arrancar(ex){
+  S.exam=ex; S.view="examen"; S.cur=0; S.started=Date.now();
+  if(S.modo==="examen"){ S.timer=setInterval(()=>{ S.tLeft--;
+    if(S.tLeft<=0){ enviar(true); return; }
+    const el=document.querySelector(".timer");
+    if(el){ el.textContent=fmt(S.tLeft); el.classList.toggle("low", S.tLeft<600); } },1000); }
+  window.scrollTo(0,0); render();
+}
+function enviar(auto){
+  const total=qs().length, faltan=total-qs().filter(answered).length;
+  if(!auto && faltan>0 && !confirm(`Tienes ${faltan} pregunta(s) sin responder. ¿Enviar de todos modos?`)) return;
+  if(S.timer) clearInterval(S.timer);
+  const raw=correctas(), sc=escalado(raw,total);
+  const per={}; qs().forEach(q=>{ per[q.domain]=per[q.domain]||{c:0,t:0};
+    per[q.domain].t++; if(isCorrect(q)) per[q.domain].c++; });
+  const falladas=qs().filter(q=>!isCorrect(q)).map(q=>q.id);
+  const intento={ ts:Date.now(), examId:S.exam.id, examName:S.exam.name, modo:S.modo, correctas:raw, total,
+    puntaje:sc, aprobado:sc>=PASS_SCALED, porDominio:per, falladas,
+    duracionSeg: S.modo==="examen"? (EXAM_MINUTES*60 - S.tLeft) : Math.round((Date.now()-S.started)/1000) };
+  const lista=store.read(); lista.push(intento);
+  S.guardadoOk=store.write(lista); S.saved=true;
+  S.view="resultado"; window.scrollTo(0,0); render();
+}
+/* ---------- tema ---------- */
+let TEMA=(()=>{ try{ return localStorage.getItem("aifC01.tema")||"oscuro"; }catch(e){ return "oscuro"; } })();
+function aplicarTema(){
+  document.documentElement.setAttribute("data-tema",TEMA);
+  const b=document.getElementById("btnTema");
+  if(b) b.textContent = TEMA==="oscuro" ? "◇ Tema claro" : "◆ Tema oscuro";
+}
+function alternarTema(){ TEMA = TEMA==="oscuro"?"claro":"oscuro";
+  try{ localStorage.setItem("aifC01.tema",TEMA); }catch(e){} aplicarTema(); }
+document.getElementById("btnTema").onclick=alternarTema;
+aplicarTema();
+
+/* ---------- atajos de teclado ---------- */
+document.addEventListener("keydown",(e)=>{
+  const trg=e.target||{};
+  if(/^(INPUT|TEXTAREA|SELECT)$/.test(trg.tagName||"")) return;
+  if(S.view!=="examen") return;
+  const q=qs()[S.cur];
+  if(e.key==="ArrowRight"){ if(S.cur<qs().length-1){ S.cur++; render(); } }
+  else if(e.key==="ArrowLeft"){ if(S.cur>0){ S.cur--; render(); } }
+  else if((e.key||"").toLowerCase()==="f"){ const k=key(q); S.flags.has(k)?S.flags.delete(k):S.flags.add(k); render(); }
+  else if(/^[1-6]$/.test(e.key) && (q.type==="mc"||q.type==="mr")){
+    const i=+e.key-1;
+    if(i<q.options.length){ const k=key(q), a=S.ans[k]||(S.ans[k]={sel:[]});
+      if(q.type==="mc") a.sel=[i]; else { const p=a.sel.indexOf(i); p>=0? a.sel.splice(p,1): a.sel.push(i); }
+      render(); }
+  }
+});
+
+S=estadoInicial(); render();
+</script>
+</body>
+</html>
