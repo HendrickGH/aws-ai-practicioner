@@ -85,9 +85,30 @@ def validar_examen(ruta):
     revisar(not repetidos, f"sin enunciados duplicados ({len(repetidos)} encontrados)")
 
 
+DIFICILES = {"E", "F"}
+
+
+def validar_dificultad(ruta):
+    qs = json.loads(ruta.read_text(encoding="utf-8"))
+    problemas = []
+    for q in qs:
+        n = q["id"]
+        if q["type"] in ("mc", "mr"):
+            if len(q["stem"]) < 120:
+                problemas.append(f"#{n}: enunciado de {len(q['stem'])} caracteres")
+            for i, o in enumerate(q["options"]):
+                if len(o) < 40:
+                    problemas.append(f"#{n}: opción {i} de {len(o)} caracteres")
+    revisar(not problemas,
+            f"nivel difícil: longitud mínima de enunciados y opciones ({len(problemas)} problema(s))")
+
+
 def main():
-    for id_examen in "ABCD":
-        validar_examen(RAIZ / "banco" / f"preguntas.exam{id_examen}.json")
+    for id_examen in "ABCDEF":
+        ruta = RAIZ / "banco" / f"preguntas.exam{id_examen}.json"
+        validar_examen(ruta)
+        if id_examen in DIFICILES:
+            validar_dificultad(ruta)
     print()
     if fallos:
         print(f"RESULTADO: {len(fallos)} comprobación(es) fallida(s)")

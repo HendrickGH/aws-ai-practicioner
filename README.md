@@ -1,12 +1,14 @@
 # Simuladores · AWS Certified AI Practitioner (AIF-C01)
 
-Cuatro exámenes de práctica en español, apegados al exam guide oficial versión 1.1
-(publicada el 30 de abril de 2026), que es la que agregó los objetivos de IA agéntica.
+Seis exámenes de práctica en español en dos niveles de dificultad, apegados al exam guide
+oficial versión 1.1 (publicada el 30 de abril de 2026), que es la que agregó los objetivos
+de IA agéntica.
 
 ## Qué es esto
 
-- **260 preguntas** (4 exámenes × 65), escritas en español neutro, con los nombres de los
-  servicios de AWS en inglés.
+- **390 preguntas** (6 exámenes × 65) en dos niveles: **fácil** (4 exámenes de
+  reconocimiento) y **difícil** (2 exámenes con escenarios robustos y opciones ambiguas),
+  escritas en español neutro, con los nombres de los servicios de AWS en inglés.
 - **Pesos idénticos al examen real**: 13 / 16 / 18 / 9 / 9 preguntas para los dominios
   20% / 24% / 28% / 14% / 14%.
 - **Los cuatro tipos de pregunta que usa AWS**: opción múltiple, respuesta múltiple,
@@ -30,21 +32,25 @@ Recomendaciones:
 2. El historial vive en **ese navegador y esa máquina**. Si cambias de equipo, exporta el
    JSON desde la vista de historial e impórtalo en el otro.
 3. Ruta sugerida: el Examen 1 en modo simulacro para diagnóstico, los exámenes 2 y 3 en
-   modo estudio (ahí la explicación es la que enseña) y el 4 como simulacro final. Después
-   ataca el dominio que quede por debajo de 70% acumulado.
+   modo estudio (ahí la explicación es la que enseña) y el 4 como simulacro final. Cuando
+   domines el nivel fácil, pasa a los exámenes 5 y 6 (nivel difícil): sus escenarios con
+   restricciones múltiples y opciones ambiguas miden si de verdad estás listo para el 700.
+   Después ataca el dominio que quede por debajo de 70% acumulado.
 
 Atajos de teclado en el examen: `1`–`6` responden, `←` `→` navegan, `F` marca para repasar.
 
 ## Estructura
 
 ```
-index.html                  Simulador completo: motor + las 260 preguntas embebidas.
+index.html                  Simulador completo: motor + las 390 preguntas embebidas.
                             Es el único archivo que necesitas para estudiar.
 banco/
-  preguntas.examA.json      Examen 1, escenarios mixtos (traducción del banco original en inglés).
-  preguntas.examB.json      Examen 2, comercio, logística y retail.
-  preguntas.examC.json      Examen 3, servicios financieros y regulación.
-  preguntas.examD.json      Examen 4, salud, industria y sector público.
+  preguntas.examA.json      Examen 1 (fácil), escenarios mixtos.
+  preguntas.examB.json      Examen 2 (fácil), comercio, logística y retail.
+  preguntas.examC.json      Examen 3 (fácil), servicios financieros y regulación.
+  preguntas.examD.json      Examen 4 (fácil), salud, industria y sector público.
+  preguntas.examE.json      Examen 5 (difícil), escenarios mixtos avanzados.
+  preguntas.examF.json      Examen 6 (difícil), casos integrados multi-dominio.
 build/
   plantilla.html            Motor del simulador con el marcador __EXAMS_JSON__.
   construir.py              Regenera index.html desde la plantilla y los bancos.
@@ -54,7 +60,7 @@ build/
 ## Reconstruir después de editar preguntas
 
 ```bash
-python3 build/validar.py      # revisa los cuatro bancos
+python3 build/validar.py      # revisa los seis bancos
 python3 build/construir.py    # regenera index.html
 ```
 
@@ -80,7 +86,7 @@ dos comandos.
 
 ## Advertencia honesta
 
-Estas 260 preguntas son originales y están ancladas al exam guide oficial, pero **no están
+Estas 390 preguntas son originales y están ancladas al exam guide oficial, pero **no están
 revisadas ni avaladas por AWS**, y no son preguntas filtradas del examen real. Sirven como
 banco de práctica serio y como diagnóstico, no como garantía de aprobar.
 

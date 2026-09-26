@@ -1,0 +1,1158 @@
+[
+ {
+  "id": 1,
+  "domain": 1,
+  "task": "1.1",
+  "type": "mc",
+  "stem": "Una empresa tiene un histórico de 8.000 registros tabulares etiquetados para predecir abandono de clientes, exige que cada predicción sea justificable ante auditoría y además quiere generar resúmenes en lenguaje natural a partir de esos registros. El equipo debate entre 'usar aprendizaje profundo' y 'usar IA generativa' para todo. ¿Qué afirmación describe MÁS correctamente la relación entre los conceptos y el enfoque adecuado?",
+  "options": [
+   "El aprendizaje profundo es un subconjunto del aprendizaje automático basado en redes neuronales profundas; para 8.000 filas tabulares con requisito de explicabilidad conviene un modelo clásico de ML, reservando la IA generativa solo para los resúmenes.",
+   "El aprendizaje automático es un subconjunto del aprendizaje profundo; al ser más avanzado, el aprendizaje profundo siempre produce mejores resultados sin importar el tamaño de los datos.",
+   "La IA generativa es un subconjunto del aprendizaje automático clásico y es la mejor opción para la predicción tabular porque puede justificar sus decisiones ante auditoría.",
+   "La IA agéntica es equivalente a la IA generativa; combinarlas produce un único modelo que predice y explica de forma determinista, sin riesgo de alucinaciones."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El aprendizaje profundo es un subconjunto del aprendizaje automático, no al revés; con 8.000 filas tabulares y necesidad de explicabilidad, un modelo clásico generaliza mejor y es más fácil de justificar que una red profunda. La opción 1 invierte la jerarquía y asume que 'más avanzado' siempre gana, un error común. La opción 2 ubica mal a la IA generativa, y la 3 confunde IA agéntica con generativa y niega las alucinaciones."
+ },
+ {
+  "id": 2,
+  "domain": 1,
+  "task": "1.1",
+  "type": "mc",
+  "stem": "Una empresa procesa facturas escaneadas con un modelo de Amazon Bedrock. El flujo nocturno debe procesar 200.000 documentos en un lote que corre durante horas sin supervisión y con el menor costo posible; el flujo diurno debe responder a un único documento en menos de 300 ms para una aplicación web. ¿Qué combinación de tipos de inferencia satisface AMBOS requisitos?",
+  "options": [
+   "Inferencia por lotes (batch) para el flujo nocturno e inferencia en tiempo real para la aplicación web.",
+   "Inferencia en tiempo real para ambos flujos, reservando throughput aprovisionado las 24 horas.",
+   "Inferencia asíncrona para ambos flujos, porque permite encolar peticiones y nunca bloquea al cliente.",
+   "Inferencia serverless (on-demand) para ambos flujos, porque es la única opción que garantiza latencia menor a 300 ms."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El lote nocturno no tiene requisito de latencia y beneficia de la inferencia por lotes, de menor costo; el flujo diurno exige respuesta síncrona sub-300 ms, lo que exige inferencia en tiempo real. La opción 1 desperdicia throughput aprovisionado en un trabajo por lotes. La opción 3 (asíncrona) no garantiza una respuesta síncrona en 300 ms, y la 4 confunde 'serverless' (un modelo de precios/gestión) con una garantía de latencia."
+ },
+ {
+  "id": 3,
+  "domain": 1,
+  "task": "1.1",
+  "type": "mc",
+  "stem": "Un chatbot debe responder preguntas frecuentes generando texto y, cuando el usuario lo autoriza, consultar una API de reservas, decidir si hay disponibilidad y ejecutar la reserva por sí mismo. El equipo confunde los términos 'IA generativa' e 'IA agéntica'. ¿Qué distinción es MÁS precisa?",
+  "options": [
+   "La IA generativa crea contenido nuevo (texto, imágenes); la IA agéntica percibe un entorno, planifica y ejecuta acciones hacia un objetivo usando herramientas, superando la mera generación.",
+   "La IA agéntica solo genera respuestas de texto más largas que la IA generativa, sin ejecutar acciones externas.",
+   "La IA generativa es un tipo de IA agéntica, porque toda generación de texto ya implica planificación y uso de herramientas.",
+   "Ambas son equivalentes; la diferencia es solo de nombre comercial sin impacto técnico en el diseño."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La capacidad del chatbot de consultar una API, decidir y ejecutar la reserva es comportamiento agéntico (percepción, planificación, acción con herramientas), no simple generación de contenido. La opción 2 reduce lo agéntico a 'texto más largo', la opción 3 invierte la inclusión (generar no implica actuar), y la 4 niega una distinción técnica real que sí cambia el diseño."
+ },
+ {
+  "id": 4,
+  "domain": 1,
+  "task": "1.1",
+  "type": "order",
+  "stem": "Ordena las tecnologías de IA desde el concepto más amplio hasta el más específico.",
+  "items": [
+   "Inteligencia artificial (IA)",
+   "Aprendizaje automático (machine learning)",
+   "Aprendizaje profundo (deep learning)",
+   "IA generativa (generative AI)"
+  ],
+  "explain": "La jerarquía anidada va de lo más general a lo más específico: la IA es el campo más amplio; el aprendizaje automático es un subconjunto de la IA que aprende de datos; el aprendizaje profundo es un subconjunto del ML que usa redes neuronales profundas; y la IA generativa se construye sobre el aprendizaje profundo para crear contenido nuevo. Cada nivel está contenido en el anterior."
+ },
+ {
+  "id": 5,
+  "domain": 1,
+  "task": "1.2",
+  "type": "mc",
+  "stem": "Un banco tiene un histórico de 1,2 millones de transacciones, de las cuales la mitad ya fueron marcadas por analistas como 'fraude' o 'legítima', y quiere detectar fraudes en tiempo real. Además, quiere descubrir patrones desconocidos entre clientes que no tienen ninguna etiqueta. ¿Qué tipos de aprendizaje corresponden, respectivamente, a cada objetivo?",
+  "options": [
+   "Aprendizaje supervisado para la detección de fraude (usa etiquetas) y aprendizaje no supervisado para descubrir patrones entre clientes.",
+   "Aprendizaje no supervisado para ambos, porque en ambos casos se buscan patrones ocultos en los datos.",
+   "Aprendizaje supervisado para ambos, porque los analistas ya etiquetaron parte de las transacciones.",
+   "Aprendizaje por refuerzo para ambos, porque el sistema debe decidir en tiempo real y ser recompensado por cada detección correcta."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La detección de fraude cuenta con etiquetas reales, por lo que es aprendizaje supervisado (clasificación); descubrir patrones en clientes sin etiqueta es aprendizaje no supervisado (agrupamiento). La opción 1 descarta etiquetas que sí existen; la 2 asume erróneamente que el segundo objetivo está etiquetado; la 3 usa aprendizaje por refuerzo, que aprende de recompensas en un bucle de acción, no de un conjunto etiquetado."
+ },
+ {
+  "id": 6,
+  "domain": 1,
+  "task": "1.2",
+  "type": "mc",
+  "stem": "Una inmobiliaria quiere estimar el precio de venta de una casa (un valor continuo en dólares) y, por separado, predecir si un comprador cerrará o no la compra. El equipo aplicó el mismo modelo a ambos problemas. ¿Qué tipos de problema son y por qué es un error tratarlos igual?",
+  "options": [
+   "Regresión para el precio (salida continua) y clasificación binaria para el cierre (salida categórica); requieren funciones de pérdida y métricas distintas.",
+   "Clasificación para ambos, porque el precio también puede dividirse en rangos discretos.",
+   "Regresión para ambos, porque 'compra o no compra' puede codificarse como 0 y 1 numéricos.",
+   "Agrupamiento (clustering) para ambos, porque agrupa casas y compradores con comportamientos similares."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El precio es una salida continua (regresión, con pérdida tipo MSE y métrica RMSE); el cierre es una categoría binaria (clasificación, con pérdida de entropía cruzada y métricas como precisión/exhaustividad). La opción 2 es el distractor tentador: codificar sí/no como 0 y 1 es una codificación de etiqueta, no convierte el problema en regresión. La 1 fuerza una discretización innecesaria y la 3 confunde agrupamiento no supervisado con predicción supervisada."
+ },
+ {
+  "id": 7,
+  "domain": 1,
+  "task": "1.2",
+  "type": "mc",
+  "stem": "Un sistema de trading debe aprender una política de compra y venta explorando el mercado y recibiendo una recompensa numérica acumulada por cada decisión, sin un conjunto de respuestas correctas pre-etiquetadas. El equipo quiere saber qué tipo de aprendizaje es y cómo evaluar su desempeño. ¿Cuál es la respuesta MÁS correcta?",
+  "options": [
+   "Es aprendizaje por refuerzo; se evalúa con la recompensa acumulada (retorno) a lo largo del tiempo, no con exactitud o precisión de un conjunto de prueba.",
+   "Es aprendizaje supervisado; se evalúa con la exactitud sobre un conjunto de prueba etiquetado con las decisiones correctas.",
+   "Es aprendizaje no supervisado; se evalúa con el error cuadrático medio (RMSE) de las predicciones.",
+   "Es aprendizaje por transferencia; se evalúa reutilizando un modelo preentrenado de otro mercado."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Aprender una política por exploración y recompensa acumulada, sin etiquetas previas, es aprendizaje por refuerzo; su desempeño se mide por el retorno acumulado, no por exactitud o precisión. La opción 1 es el distractor tentador: la gente confunde 'recompensa' con 'etiqueta', pero no hay una acción correcta pre-etiquetada. La 2 usa RMSE (métrica de regresión) y confunde no supervisado, y la 3 describe transferencia, no refuerzo."
+ },
+ {
+  "id": 8,
+  "domain": 1,
+  "task": "1.2",
+  "type": "mr",
+  "stem": "Una empresa de salud tiene tres necesidades: (a) clasificar imágenes médicas que ya están etiquetadas con diagnóstico, (b) reutilizar un modelo preentrenado en imágenes generales para ahorrar datos y cómputo, y (c) optimizar una secuencia de tratamientos donde cada acción del sistema afecta el estado del paciente y recibe una recompensa diferida. ¿Cuáles DOS tipos de aprendizaje son directamente aplicables a estas necesidades?",
+  "options": [
+   "Aprendizaje supervisado para clasificar las imágenes etiquetadas con diagnóstico.",
+   "Aprendizaje por transferencia para reutilizar el modelo preentrenado en imágenes generales.",
+   "Aprendizaje por refuerzo para optimizar la secuencia de tratamientos con recompensa diferida.",
+   "Aprendizaje no supervisado para predecir el diagnóstico a partir de etiquetas ya existentes.",
+   "Regresión para agrupar pacientes en segmentos sin etiquetas previas."
+  ],
+  "answers": [
+   0,
+   1,
+   2
+  ],
+  "explain": "Las imágenes etiquetadas implican aprendizaje supervisado; reutilizar un modelo preentrenado es aprendizaje por transferencia; y la secuencia de acciones con recompensa diferida es aprendizaje por refuerzo. La opción 3 es el distractor tentador: afirma que el no supervisado 'predice a partir de etiquetas existentes', lo que es una contradicción, pues el no supervisado no usa etiquetas. La opción 4 mezcla regresión (predicción continua) con agrupamiento (no supervisado), dos conceptos distintos."
+ },
+ {
+  "id": 9,
+  "domain": 1,
+  "task": "1.2",
+  "type": "mc",
+  "stem": "Una startup tiene solo 500 imágenes etiquetadas para detectar defectos de fabricación y no puede recolectar más. Entrenar una red desde cero produce un modelo que alcanza 99% de exactitud en entrenamiento pero falla en producción. ¿Qué enfoque mitiga MEJOR este problema y qué fenómeno lo causó?",
+  "options": [
+   "Aprendizaje por transferencia: partir de un modelo preentrenado en imágenes y afinarlo (fine-tuning) con las 500 imágenes, lo que reduce el sobreajuste (overfitting).",
+   "Entrenar la red desde cero con más capas para aumentar su capacidad, porque el fallo se debe a subajuste (underfitting).",
+   "Usar aprendizaje no supervisado para etiquetar automáticamente las imágenes y así generar más datos de entrenamiento.",
+   "Aumentar la exactitud en entrenamiento hasta el 100% eliminando los casos difíciles del conjunto."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Con solo 500 imágenes, el aprendizaje por transferencia reutiliza características ya aprendidas y mitiga el sobreajuste, que es el fenómeno detrás de '99% en entrenamiento pero falla en producción'. La opción 1 es el distractor tentador: propone más capas y diagnostica subajuste, pero añadir capacidad agrava el sobreajuste, no lo resuelve. La 2 no genera etiquetas (el no supervisado no las crea) y la 3 empeora el sobreajuste al inflar la métrica de entrenamiento."
+ },
+ {
+  "id": 10,
+  "domain": 1,
+  "task": "1.3",
+  "type": "mc",
+  "stem": "Un modelo filtra correos como spam. Un falso positivo (marcar como spam un correo legítimo) hace perder un correo importante del cliente; un falso negativo (dejar pasar spam) es molesto pero de bajo costo. El equipo debe elegir entre maximizar la precisión o la exhaustividad. ¿Qué métrica priorizar y por qué?",
+  "options": [
+   "Precisión, porque minimiza los falsos positivos: de los correos marcados como spam, casi todos deben ser spam real.",
+   "Exhaustividad (recall), porque minimiza los falsos negativos y asegura capturar todo el spam posible.",
+   "Exactitud (accuracy), porque resume en un único número el desempeño global ante clases desbalanceadas.",
+   "F1, porque siempre es superior a la precisión y la exhaustividad por separado en cualquier escenario."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Cuando el falso positivo es costoso, se prioriza la precisión, que penaliza marcar como spam correos legítimos. La opción 1 (exhaustividad) reduce los falsos negativos, que es el compromiso opuesto, y no encaja con el costo descrito. La 2 (exactitud) engaña con clases desbalanceadas, y la 3 es falsa: el F1 armoniza ambas, pero no es 'siempre superior' cuando un tipo de error domina el costo."
+ },
+ {
+  "id": 11,
+  "domain": 1,
+  "task": "1.3",
+  "type": "mc",
+  "stem": "Un clasificador de fraude se evalúa sobre 10.000 transacciones, de las cuales solo 50 son fraude. El modelo predice 'no fraude' para todas y alcanza 99,5% de exactitud, por lo que el equipo lo da por bueno. ¿Qué métrica revela correctamente el fracaso del modelo?",
+  "options": [
+   "La exhaustividad (recall) de la clase fraude, que sería 0, mostrando que el modelo no detecta ningún fraude real.",
+   "La exactitud, porque al ser 99,5% demuestra que el modelo es robusto.",
+   "El RMSE, porque mide el error entre las predicciones y los valores reales de fraude.",
+   "La precisión, que al ser alta confirmaría que el modelo captura bien la clase minoritaria."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Con un desbalance tan severo (50 de 10.000), la exactitud es engañosa; la exhaustividad de la clase fraude sería 0, revelando que no detecta ningún fraude. La opción 1 es el distractor tentador: el 99,5% parece excelente pero oculta el fallo total en la clase minoritaria. La 2 usa RMSE, que es una métrica de regresión, y la 3 confunde precisión con exhaustividad: la precisión alta no muestra que se perdió toda la clase fraude."
+ },
+ {
+  "id": 12,
+  "domain": 1,
+  "task": "1.3",
+  "type": "mc",
+  "stem": "Un modelo muestra 98% de exactitud en entrenamiento pero solo 61% en validación. El equipo propone agregar más datos de entrenamiento y reducir la complejidad del modelo. ¿Qué diagnóstico respalda esta propuesta y cuál sería el síntoma del fenómeno opuesto?",
+  "options": [
+   "Sobreajuste (overfitting): gran brecha entre entrenamiento y validación; el fenómeno opuesto (subajuste) mostraría bajo desempeño en AMBOS conjuntos.",
+   "Subajuste (underfitting): el modelo es demasiado simple; el síntoma opuesto mostraría desempeño perfecto en validación.",
+   "Sesgo alto, porque el modelo no captura los patrones; agregar más capas resolvería la brecha.",
+   "El modelo está bien; una brecha del 37% entre entrenamiento y validación es normal en producción."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Alta exactitud en entrenamiento con baja en validación es la firma del sobreajuste; agregar datos y reducir complejidad son las mitigaciones correctas, y el subajuste mostraría mal desempeño en ambos conjuntos. La opción 1 es el distractor tentador: diagnostica subajuste, cuyo síntoma es desempeño bajo en ambos, no una brecha. La 2 confunde sesgo alto (≈ subajuste) y propone más capas, que empeoraría el sobreajuste; la 3 normaliza una brecha patológica."
+ },
+ {
+  "id": 13,
+  "domain": 1,
+  "task": "1.3",
+  "type": "mc",
+  "stem": "Un modelo predice el tiempo de entrega en días (variable continua). Un candidato arroja un RMSE de 1,5 días; otro, un RMSE de 0,4 días pero que subestima sistemáticamente los plazos en 1 día para toda la región norte. ¿Qué elección es MÁS correcta considerando el error y el sesgo?",
+  "options": [
+   "El RMSE de 0,4 no basta: hay que inspeccionar el sesgo sistemático por región, que el RMSE global oculta y que perjudica las decisiones en la región norte.",
+   "Elegir el modelo con RMSE de 0,4 sin más análisis, porque un RMSE menor siempre implica un mejor modelo.",
+   "Elegir el modelo con RMSE de 1,5, porque un RMSE mayor garantiza menor sesgo.",
+   "Descartar el RMSE y usar exactitud, porque al ser una variable continua se debe medir el porcentaje de aciertos."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El RMSE es un error promedio y no revela un sesgo sistemático por subgrupo; hay que inspeccionar la distribución del error por región antes de decidir. La opción 1 es el distractor tentador: un RMSE menor no implica un mejor modelo si arrastra un sesgo que daña a un subgrupo concreto. La 2 es falsa (mayor RMSE no garantiza menor sesgo), y la 3 usa exactitud, que es una métrica de clasificación, no de regresión."
+ },
+ {
+  "id": 14,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "Un equipo aplica ajuste fino (fine-tuning) a un modelo fundacional (foundation model) usando un corpus pequeño de normativa legal. Observa que el modelo ahora responde con gran precisión sobre la normativa, pero ha empeorado en tareas generales que antes dominaba. El equipo quiere especializar el modelo sin perder sus capacidades generales y sin reentrenar desde cero. ¿Qué ajuste del proceso de fine-tuning es el MÁS adecuado?",
+  "options": [
+   "Usar una tasa de aprendizaje baja y combinar datos del dominio con datos generales para mitigar el olvido catastrófico.",
+   "Aumentar la temperatura en la inferencia para que el modelo recupere espontáneamente sus capacidades generales.",
+   "Entrenar exclusivamente con la normativa para maximizar la especialización y evitar cualquier interferencia.",
+   "Pre-entrenar un modelo desde cero con los datos generales más la normativa para reconstruir ambas capacidades."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El olvido catastrófico degrada capacidades previas cuando el ajuste fino sobrespecializa; una tasa de aprendizaje baja y mezclar datos generales con los del dominio lo mitigan. Aumentar la temperatura solo altera la aleatoriedad del muestreo y no restaura pesos perdidos; entrenar solo con la normativa agrava la pérdida; y el pre-entrenamiento desde cero es desproporcionadamente costoso."
+ },
+ {
+  "id": 15,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "Una aplicación genera tres variantes de eslogan publicitario para que un redactor elija una. Con la configuración actual, las tres variantes resultan casi idénticas y aportan poco valor. El equipo quiere mayor diversidad en la salida, pero sin que el texto pierda coherencia gramatical. ¿Qué ajuste de los parámetros de muestreo es el MÁS adecuado?",
+  "options": [
+   "Incrementar moderadamente la temperatura para aplanar la distribución de probabilidad de los tokens, sin llevarla a valores extremos.",
+   "Fijar la temperatura en cero para que el modelo elija siempre el token más probable y así aumentar la creatividad.",
+   "Reducir el top-p a un valor cercano a 0.1 para considerar una mayor variedad de tokens candidatos.",
+   "Ampliar la ventana de contexto para que el modelo disponga de más palabras de donde generar variantes distintas."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Subir la temperatura de forma moderada aplana la distribución y aumenta la variación sin romper la coherencia. Llevarla a cero hace el muestreo determinista y repetitivo, no más creativo; reducir el top-p restringe el conjunto de tokens a los más probables, disminuyendo la diversidad; y la ventana de contexto limita la entrada, no la aleatoriedad del muestreo."
+ },
+ {
+  "id": 16,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "Una empresa quiere que su chatbot responda usando la documentación de producto que cambia cada semana. Necesita que las respuestas citen el contenido más reciente y puedan rastrearse hasta una fuente verificable, sin reentrenar el modelo en cada actualización. Además, quiere reducir la tendencia del modelo a inventar información. ¿Qué arquitectura es la MÁS adecuada?",
+  "options": [
+   "Generación aumentada por recuperación (RAG) con un almacén vectorial actualizado, inyectando los fragmentos recuperados en el prompt.",
+   "Ajuste fino (fine-tuning) del modelo sobre cada versión semanal de la documentación para que memorice los cambios.",
+   "Generar respuestas únicamente con el conocimiento interno del modelo y una instrucción de no inventar datos.",
+   "Aumentar la temperatura y usar pocos ejemplos (few-shot) con fragmentos antiguos de la documentación."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "RAG recupera los fragmentos más recientes y los incluye en el contexto de inferencia, permitiendo citar la fuente y reducir las alucinaciones sin reentrenar. El fine-tuning semanal es costoso, lento y no garantiza fidelidad a la última versión; confiar solo en el conocimiento interno no elimina la invención; y el few-shot con datos antiguos no resuelve la actualización continua."
+ },
+ {
+  "id": 17,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "Un sistema procesa contratos extensos con un modelo cuyo límite de contexto es de 8.000 tokens. Al enviar un contrato completo, la salida pierde detalles de las cláusulas finales y en ocasiones mezcla partes de documentos distintos. El equipo quiere preservar la información relevante sin exceder el límite ni sacrificar la coherencia. ¿Qué estrategia es la MÁS adecuada?",
+  "options": [
+   "Dividir el documento en fragmentos (chunks) y recuperar solo los segmentos más relevantes para la consulta antes de generar la respuesta.",
+   "Ampliar el tamaño de la ventana de contexto cambiando un parámetro, ignorando el límite documentado del tokenizador.",
+   "Truncar silenciosamente el final del contrato para que todo el contenido restante quepa dentro del límite.",
+   "Convertir el contrato completo en un único embedding y usarlo directamente como prompt del modelo."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Fragmentar y recuperar los segmentos relevantes mantiene el contenido esencial dentro de la ventana de contexto y evita mezclar documentos. El límite de contexto es una propiedad fija del modelo, no se amplía con un parámetro; truncar el final descarta justo la información que se pierde; y un embedding es una representación numérica para búsqueda, no texto legible que el modelo pueda usar como prompt."
+ },
+ {
+  "id": 18,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "Un asistente financiero produce respuestas con un tono profesional, pero en ocasiones cita tasas e indicadores que no existen. El equipo no puede verificar manualmente cada salida y necesita reducir la invención de datos sin degradar la fluidez del texto. ¿Qué enfoque es el MÁS adecuado?",
+  "options": [
+   "Conectar el modelo a fuentes de datos verificadas (grounding) y restringir la respuesta a la información recuperada.",
+   "Bajar la temperatura a cero y confiar en que el modelo dejará de inventar cifras inexistentes.",
+   "Aumentar el número de ejemplos (few-shot) con respuestas que contienen datos ficticios para que el modelo imite el estilo.",
+   "Agregar en el prompt la instrucción de 'no inventar datos', sin modificar el flujo de entrada de información."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El grounding ancla la salida a datos reales recuperados y restringir la respuesta a ese contenido reduce la invención manteniendo la fluidez. Bajar la temperatura reduce la variación, pero no elimina alucinaciones sobre hechos ausentes; los few-shot con datos falsos refuerzan el comportamiento indeseado; y una instrucción en el prompt es débil si el modelo no tiene acceso a la información correcta."
+ },
+ {
+  "id": 19,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mc",
+  "stem": "Un catálogo de productos usa búsqueda por palabras clave y devuelve pocos resultados cuando el usuario escribe sinónimos o frases con errores menores. El equipo quiere mejorar el recall (recuperación) sin perder la precisión de los filtros exactos como el SKU. ¿Qué enfoque es el MÁS adecuado?",
+  "options": [
+   "Implementar una búsqueda híbrida que combine la similitud de embeddings para el significado con filtros exactos de metadatos como el SKU.",
+   "Reemplazar por completo la búsqueda por palabras clave por la similitud de embeddings, descartando los filtros de SKU.",
+   "Aumentar la temperatura del modelo generativo para que devuelva más productos por inferencia.",
+   "Aplicar fine-tuning al modelo para que memorice todos los SKU y sinónimos del catálogo."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La búsqueda híbrida suma la recuperación semántica de los embeddings con la precisión de los filtros exactos, mejorando el recall sin sacrificar la búsqueda por SKU. Descartar las palabras clave pierde la coincidencia exacta; ajustar la temperatura no afecta la recuperación de un índice; y el fine-tuning no es el mecanismo correcto para indexar y recuperar SKU."
+ },
+ {
+  "id": 20,
+  "domain": 2,
+  "task": "2.1",
+  "type": "mr",
+  "stem": "Un equipo configura un modelo fundacional para dos cargas de trabajo distintas: una de extracción de datos que exige salidas deterministas y repetibles, y otra de lluvia de ideas que requiere salidas diversas. El equipo evalúa el comportamiento de los parámetros de muestreo para decidir cómo configurar cada carga. ¿Cuáles DOS afirmaciones describen correctamente el comportamiento de estos parámetros?",
+  "options": [
+   "Con la temperatura en cero, el modelo elige siempre el token más probable y produce una salida determinista.",
+   "Un valor de top-p bajo (por ejemplo 0.1) restringe el muestreo a un subconjunto pequeño de tokens de alta probabilidad.",
+   "Aumentar la temperatura por encima de 2 garantiza que la salida siempre sea coherente y gramaticalmente correcta.",
+   "top-k y top-p son intercambiables y producen exactamente la misma distribución independientemente del valor elegido.",
+   "La ventana de contexto determina directamente cuántos tokens distintos puede elegir el modelo en cada paso de muestreo."
+  ],
+  "answers": [
+   0,
+   1
+  ],
+  "explain": "Con temperatura cero el muestreo es determinista porque se toma el token de mayor probabilidad, y un top-p bajo recorta el conjunto a pocos tokens de alta probabilidad. Las demás son falsas: temperaturas muy altas degradan la coherencia, top-k y top-p operan con criterios distintos, y la ventana de contexto limita la entrada, no la cantidad de tokens elegibles en el muestreo."
+ },
+ {
+  "id": 21,
+  "domain": 2,
+  "task": "2.1",
+  "type": "match",
+  "stem": "Empareja cada concepto de IA generativa con su descripción correcta.",
+  "pairs": [
+   [
+    "Modelo fundacional (foundation model)",
+    "Modelo de gran escala pre-entrenado sobre datos masivos que se adapta a múltiples tareas"
+   ],
+   [
+    "Embedding (incrustación)",
+    "Representación numérica vectorial que captura el significado de un texto"
+   ],
+   [
+    "Alucinación",
+    "Salida del modelo que presenta como verdadera información no respaldada por los datos"
+   ],
+   [
+    "Fine-tuning (ajuste fino)",
+    "Adaptación de un modelo pre-entrenado con datos adicionales del dominio"
+   ],
+   [
+    "RAG (generación aumentada por recuperación)",
+    "Técnica que inyecta fragmentos recuperados de fuentes externas en el prompt"
+   ]
+  ],
+  "explain": "Cada término se empareja con su definición canónica. El modelo fundacional es la base pre-entrenada reutilizable; el embedding es la representación semántica vectorial; la alucinación es la invención de contenido no verificado; el fine-tuning ajusta el modelo con datos del dominio; y RAG recupera contexto externo para fundamentar la generación."
+ },
+ {
+  "id": 22,
+  "domain": 2,
+  "task": "2.2",
+  "type": "mc",
+  "stem": "Un asistente debe resolver problemas de matemáticas de varios pasos y también responder preguntas de trivia simple. Con zero-shot comete errores en los cálculos de varios pasos, pero la trivia ya es correcta. El equipo quiere mejorar el razonamiento paso a paso sin aumentar de forma desproporcionada la latencia ni el costo de tokens en todas las solicitudes. ¿Qué técnica de prompt es la MÁS adecuada?",
+  "options": [
+   "Aplicar razonamiento en cadena (chain-of-thought) pidiendo al modelo que desglose los pasos antes de la respuesta final, principalmente en los problemas de varios pasos.",
+   "Usar few-shot con muchos ejemplos completos en todas las solicitudes, incluida la trivia, para maximizar la precisión global.",
+   "Asignar el rol de 'matemático experto' en todos los prompts, ya que el rol por sí solo corrige los errores de cálculo.",
+   "Bajar la temperatura a cero y eliminar el razonamiento intermedio para acelerar la generación de todas las respuestas."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El chain-of-thought induce al modelo a razonar paso a paso, reduciendo errores en tareas de varios pasos, y puede aplicarse selectivamente para controlar costo y latencia. El few-shot masivo encarece todas las solicitudes sin aportar en la trivia; el rol/persona orienta el estilo pero no garantiza exactitud aritmética; y eliminar el razonamiento intermedio agrava los errores."
+ },
+ {
+  "id": 23,
+  "domain": 2,
+  "task": "2.2",
+  "type": "mc",
+  "stem": "Una empresa necesita que un modelo genere respuestas de soporte con un tono específico y en un formato JSON estructurado para integrarlas en un sistema existente. El modelo actual responde en prosa y con un tono variable. El equipo quiere fijar el estilo y el formato de salida de manera confiable sin reentrenar el modelo. ¿Qué técnica de prompt es la MÁS adecuada?",
+  "options": [
+   "Asignar un rol o persona explícito y especificar el formato de salida incluyendo un ejemplo del esquema JSON requerido en el prompt.",
+   "Aumentar la temperatura y el top-p para que el modelo explore más tonos hasta acertar con el formato esperado.",
+   "Aplicar fine-tuning con miles de ejemplos para que el modelo aprenda únicamente el tono y el esquema requeridos.",
+   "Confiar en que el modelo deduzca el formato de salida a partir del nombre de la función, sin instrucciones explícitas de formato."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La asignación de rol/persona fija el estilo y un ejemplo del esquema en el prompt ancla el formato de salida de forma económica y confiable. Ajustar el muestreo no controla el formato; el fine-tuning es desproporcionado para fijar tono y esquema; y sin especificar el formato, el modelo no puede garantizar la estructura JSON requerida."
+ },
+ {
+  "id": 24,
+  "domain": 2,
+  "task": "2.2",
+  "type": "mc",
+  "stem": "Un equipo construye un prompt few-shot para un clasificador de sentimientos. Observa que el modelo replica el sesgo presente en los ejemplos seleccionados y alucina categorías que no existen en el esquema. Necesita reducir estos errores sin aumentar de forma excesiva el costo de tokens. ¿Qué práctica de prompt engineering es la MÁS adecuada?",
+  "options": [
+   "Seleccionar pocos ejemplos pero diversos y representativos, e indicar explícitamente las categorías válidas en las instrucciones.",
+   "Incluir la mayor cantidad posible de ejemplos para cubrir todos los casos, sin importar su calidad.",
+   "Usar solo zero-shot con una instrucción mínima para evitar por completo cualquier sesgo en la salida.",
+   "Asignar un rol neutral al modelo, ya que el rol elimina automáticamente el sesgo y las alucinaciones."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Pocos ejemplos bien elegidos y diversos reducen el sesgo inducido y el costo, y restringir las categorías válidas limita las alucinaciones. Muchos ejemplos de baja calidad amplifican el sesgo y encarecen; el zero-shot no elimina por sí solo el sesgo; y el rol orienta el tono, pero no remueve sesgos ni impone el conjunto de categorías válidas."
+ },
+ {
+  "id": 25,
+  "domain": 2,
+  "task": "2.2",
+  "type": "mr",
+  "stem": "Un equipo debe reducir las alucinaciones y mejorar la precisión factual de un asistente usando únicamente técnicas de prompt, sin reentrenar el modelo ni conectar bases de datos externas. ¿Cuáles DOS técnicas son las más apropiadas para lograr ese objetivo?",
+  "options": [
+   "Usar few-shot con ejemplos correctos y variados que demuestren el formato y el nivel de precisión esperado.",
+   "Instruir al modelo para que reconozca cuando no sabe la respuesta en lugar de inventar.",
+   "Aumentar la temperatura para que el modelo genere contenido más variado y, por tanto, más preciso.",
+   "Eliminar todas las instrucciones para dejar que el modelo responda con su conocimiento interno sin restricciones.",
+   "Ocultar el contexto de la conversación para que el modelo no se confunda con información previa."
+  ],
+  "answers": [
+   0,
+   1
+  ],
+  "explain": "Los ejemplos few-shot correctos anclan el comportamiento y la precisión esperada, e instruir al modelo para reconocer la falta de información reduce la invención. Subir la temperatura aumenta la variación, no la exactitud; eliminar instrucciones elimina las restricciones que limitan las alucinaciones; y ocultar el contexto útil degrada la precisión en conversaciones de varios turnos."
+ },
+ {
+  "id": 26,
+  "domain": 2,
+  "task": "2.3",
+  "type": "mc",
+  "stem": "Una organización necesita dos capacidades: invocar un modelo fundacional mediante una API gestionada para casos de uso de producción, y entrenar y ajustar su propio modelo con control total sobre el entorno y los datos. Dispone de un equipo de ciencia de datos con experiencia. ¿Qué combinación de servicios de AWS es la MÁS adecuada?",
+  "options": [
+   "Usar Amazon Bedrock para invocar modelos fundacionales por API y Amazon SageMaker para entrenar y ajustar el modelo personalizado.",
+   "Usar únicamente Amazon SageMaker, integrando manualmente los modelos fundacionales de terceros y entrenando el propio modelo.",
+   "Usar únicamente Amazon Bedrock, que además permite entrenar desde cero un modelo personalizado con control total del entorno.",
+   "Usar Amazon SageMaker para la inferencia de producción y Amazon Bedrock para el entrenamiento del modelo propio."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Bedrock ofrece acceso gestionado por API a modelos fundacionales y SageMaker proporciona control total para entrenar y ajustar modelos propios, cubriendo ambos objetivos sin trabajo manual. Integrar manualmente los modelos fundacionales en SageMaker añade fricción; Bedrock no está orientado a entrenar desde cero; e invertir los servicios es incorrecto porque Bedrock no entrena y SageMaker no expone los modelos fundacionales de terceros como lo hace Bedrock."
+ },
+ {
+  "id": 27,
+  "domain": 2,
+  "task": "2.3",
+  "type": "mc",
+  "stem": "Un equipo debe elegir un modelo disponible en Amazon Bedrock para dos escenarios: uno requiere generación de texto de alta calidad en varios idiomas con razonamiento complejo, y otro prioriza baja latencia y un modelo propio de AWS para integrarlo en un flujo de texto y embeddings. El equipo quiere minimizar el número de proveedores distintos. ¿Qué selección es la MÁS adecuada?",
+  "options": [
+   "Claude (de Anthropic) para el razonamiento complejo multilingüe y Amazon Titan para la baja latencia y la integración con servicios de AWS.",
+   "Amazon Titan para ambos escenarios, por ser el modelo de AWS con el razonamiento multilingüe más avanzado.",
+   "Claude para ambos escenarios, por ser el modelo con la menor latencia de todos los disponibles en Bedrock.",
+   "Llama (de Meta) para el razonamiento multilingüe y Claude para la baja latencia, invirtiendo las fortalezas típicas de cada modelo."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Claude sobresale en razonamiento y tareas multilingües, y Amazon Titan, como modelo propio de AWS, se integra bien en flujos de texto y embeddings con latencia predecible. Titan no es el líder en razonamiento multilingüe, Claude no destaca por ser el de menor latencia, y la última opción intercambia las fortalezas típicas de cada modelo."
+ },
+ {
+  "id": 28,
+  "domain": 2,
+  "task": "2.3",
+  "type": "mc",
+  "stem": "Una empresa analiza dos cargas de trabajo de IA: una de inferencia continua de un modelo fundacional con tráfico variable y picos, y otra de entrenamiento puntual de un modelo personalizado que requiere aceleradores de alta capacidad. Quiere optimizar costos y no mantener infraestructura ociosa. ¿Qué estrategia de cómputo es la MÁS adecuada?",
+  "options": [
+   "Inferencia serverless o bajo demanda para el tráfico variable, y trabajos de entrenamiento efímeros con GPU bajo demanda para el ajuste puntual.",
+   "Reservar un clúster fijo de GPU para ambas cargas, manteniéndolo encendido todo el tiempo para estar preparado ante los picos.",
+   "Usar throughput comprometido para el entrenamiento puntual y on-demand para la inferencia, invirtiendo la naturaleza de cada carga.",
+   "Migrar ambas cargas a instancias de propósito general sin aceleradores, ya que la inferencia y el entrenamiento requieren el mismo hardware."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La inferencia con tráfico variable encaja con opciones serverless/on-demand que escalan con la demanda, y el entrenamiento puntual con GPU bajo demanda evita pagar infraestructura ociosa. Mantener un clúster fijo encendido desperdicia recursos; el throughput comprometido conviene a la inferencia estable, no al entrenamiento puntual; y el entrenamiento de modelos grandes requiere aceleradores que no ofrecen las instancias de propósito general."
+ },
+ {
+  "id": 29,
+  "domain": 2,
+  "task": "2.3",
+  "type": "mc",
+  "stem": "Una empresa usa Amazon Bedrock para invocar un modelo fundacional. Necesita procesar un lote grande de documentos con una sola solicitud asíncrona y, en otro flujo, mantener un diálogo de varios turnos en el que el modelo recuerde el historial. Además quiere controlar la aleatoriedad de la salida. ¿Qué configuración de la solicitud es la MÁS adecuada?",
+  "options": [
+   "Usar invocación por lotes (batch) para el procesamiento masivo, mantener el historial reenviando los turnos previos en el contexto y ajustar la temperatura.",
+   "Usar invocación por lotes para el diálogo de varios turnos y descartar el historial en cada solicitud.",
+   "Guardar el historial únicamente en el parámetro de temperatura para que el modelo lo recuerde entre solicitudes.",
+   "Usar una sola invocación síncrona en tiempo real para el lote completo de documentos, ignorando los límites de tamaño."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Bedrock admite inferencia por lotes para procesar grandes volúmenes de forma asíncrona; en un diálogo, el historial se mantiene reenviando los turnos previos dentro del contexto, y la temperatura controla la aleatoriedad. El lote no es la vía correcta para un diálogo interactivo; la temperatura es un parámetro de muestreo, no un almacén de memoria; y una invocación síncrona no está pensada para lotes masivos."
+ },
+ {
+  "id": 30,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "Una aseguradora quiere construir una búsqueda semántica sobre sus pólizas almacenadas en Amazon S3 (servicio de almacenamiento de objetos). Los documentos tienen listas de control de acceso (ACL) que determinan qué usuario puede leer cada póliza, y la búsqueda debe respetarlas. El equipo además necesita ajustar la relevancia con sinónimos del dominio y no quiere construir un pipeline de incrustaciones desde cero. ¿Cuál es la opción MÁS adecuada?",
+  "options": [
+   "Amazon Kendra (servicio de búsqueda inteligente) con un conector a Amazon S3, filtrado de ACL por usuario y grupo, y ajuste de relevancia con sinónimos.",
+   "Amazon OpenSearch Service (servicio de búsqueda y análisis) con un pipeline de incrustaciones propio, aplicando seguridad a nivel de documento de forma manual.",
+   "Amazon Kendra sin conectores, indexando los documentos con un script propio que ignore las ACL para simplificar el mantenimiento.",
+   "Amazon OpenSearch Service con búsqueda por palabras clave exactas, sin vectores ni ACL, para minimizar costos."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Kendra ofrece conectores gestionados a S3 y respeta las ACL de usuario y grupo de forma nativa, además de ajuste de relevancia con sinónimos, evitando construir el pipeline de incrustaciones. OpenSearch puede lograr resultados similares, pero exige construir y mantener embeddings, seguridad a nivel de documento y sinónimos de forma manual. Ignorar las ACL o usar solo búsqueda por palabras clave incumple los requisitos de seguridad y relevancia semántica."
+ },
+ {
+  "id": 31,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "Una aerolínea quiere un asistente conversacional que responda preguntas sobre políticas de equipaje consultando su base de conocimiento y, en el mismo flujo, ejecute acciones como reemitir un pase mediante una API interna, todo sobre Amazon Bedrock (servicio de modelos fundacionales). El equipo no quiere mantener lógica de orquestación propia y necesita auditar cada paso de la interacción. ¿Cuál opción es MÁS adecuada?",
+  "options": [
+   "Amazon Bedrock Agents (agentes de Bedrock) con una base de conocimiento para la recuperación y grupos de acción para invocar la API, habilitando el rastreo de las invocaciones.",
+   "Amazon Lex (servicio de chatbots) únicamente, resolviendo cada intención con una función AWS Lambda que contenga respuestas estáticas.",
+   "Amazon Kendra conectado a una base de datos relacional para recuperar respuestas y ejecutar las acciones directamente.",
+   "Amazon Polly (servicio de síntesis de voz) para generar la voz del asistente y una única función Lambda que orqueste manualmente todos los pasos."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Bedrock Agents orquesta múltiples pasos, integra una base de conocimiento para recuperación y permite invocar APIs con grupos de acción, dejando un rastro auditable. Lex solo gestiona la conversación, por lo que ejecutar acciones complejas exigiría Lambda sin orquestación ni rastreo nativos. Kendra solo recupera documentos y no ejecuta acciones, y Polly solo sintetiza voz."
+ },
+ {
+  "id": 32,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "Un equipo de desarrollo quiere recibir sugerencias de código y generar funciones dentro de su IDE (entorno de desarrollo integrado) con asistencia de IA. El código fuente es confidencial, debe permanecer dentro de su VPC (nube privada virtual) y el asistente debe aprender de sus repositorios internos y bibliotecas propias. ¿Cuál opción es MÁS adecuada?",
+  "options": [
+   "Amazon Q Developer (asistente de código) con personalización conectada a los repositorios internos y endpoints privados dentro de la VPC.",
+   "Un modelo fundacional de Amazon Bedrock invocado desde el IDE mediante un endpoint público, sin personalización.",
+   "Amazon SageMaker (servicio de aprendizaje automático) para entrenar un modelo de lenguaje desde cero con los repositorios internos.",
+   "Amazon Comprehend (servicio de análisis de texto) para extraer entidades del código fuente y una plantilla local para generar funciones."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Amazon Q Developer ofrece sugerencias en el IDE y admite personalización con repositorios internos y conectividad privada en la VPC. Un modelo de Bedrock sin personalización no conoce las bibliotecas internas y un endpoint público viola la confidencialidad. Entrenar un modelo desde cero en SageMaker es desproporcionado, y Comprehend analiza texto natural, no genera código."
+ },
+ {
+  "id": 33,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "Una firma legal debe resumir contratos de más de 200 páginas con un modelo fundacional de Amazon Bedrock (servicio de modelos fundacionales). El modelo tiene una ventana de contexto limitada y el costo crece con los tokens de entrada. El resumen debe conservar todas las cláusulas clave sin perder información por truncamiento. ¿Cuál estrategia es MÁS adecuada?",
+  "options": [
+   "Dividir el documento en fragmentos con solapamiento y aplicar un enfoque map-reduce: resumir cada fragmento y luego consolidar los resúmenes.",
+   "Enviar el documento completo en una sola llamada y confiar en que el modelo maneje el exceso de contexto automáticamente.",
+   "Recortar el documento a las primeras 50 páginas para reducir tokens y resumir solo esa porción.",
+   "Pedir al modelo en el prompt que no olvide ninguna cláusula para extender efectivamente su ventana de contexto."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El map-reduce con fragmentos solapados respeta la ventana de contexto y controla el costo, consolidando los resúmenes parciales sin perder cláusulas. Enviar todo en una llamada provoca truncamiento y pérdida de cláusulas; recortar el documento descarta información relevante; y un prompt no puede ampliar la ventana de contexto real del modelo."
+ },
+ {
+  "id": 34,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "Una clínica quiere un chatbot que converse con pacientes y genere respuestas con un modelo fundacional. Debe filtrar cualquier consejo médico peligroso y mantener una latencia baja para que la conversación sea fluida, sin renunciar a respuestas generadas en tiempo real. ¿Cuál diseño es MÁS adecuado?",
+  "options": [
+   "Amazon Lex para la gestión de la conversación y Amazon Bedrock con Guardrails (salvaguardas) y transmisión de tokens para reducir la latencia percibida.",
+   "Amazon Lex con respuestas estáticas precargadas para todas las preguntas, sin invocar ningún modelo fundacional.",
+   "Un modelo fundacional servido en una región remota sin transmisión, para centralizar el costo de inferencia.",
+   "Amazon Transcribe (servicio de transcripción de voz) y Amazon Translate (servicio de traducción) para transcribir y traducir la conversación antes de responder."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Los Guardrails filtran contenido no deseado en inferencia y la transmisión muestra las primeras palabras antes de terminar la respuesta, reduciendo la latencia percibida. Las respuestas estáticas eliminan la generación en tiempo real; una región remota sin transmisión aumenta la latencia; y Transcribe y Translate no filtran contenido clínico ni orquestan el chatbot."
+ },
+ {
+  "id": 35,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mc",
+  "stem": "Un equipo implementó RAG (generación aumentada por recuperación) con Amazon Bedrock y una base de vectores en Amazon OpenSearch Service, pero el modelo alucina citas de documentos que no existen. Quieren reducir la alucinación sin reentrenar el modelo y sin degradar la latencia. ¿Cuál ajuste es MÁS eficaz?",
+  "options": [
+   "Reordenar los fragmentos recuperados y limitar el contexto a los más relevantes, instruyendo al modelo para que responda solo con el contexto recuperado.",
+   "Aumentar la temperatura del modelo para que explore combinaciones más creativas de los fragmentos.",
+   "Aplicar ajuste fino al modelo con los documentos completos del corpus.",
+   "Ampliar la ventana de contexto para inyectar todos los documentos del corpus en cada consulta."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El reordenamiento mejora la calidad de la recuperación y restringir el contexto, junto con instrucciones de responder solo con lo recuperado, reduce las citas inventadas. Aumentar la temperatura agrava la alucinación; el ajuste fino no corrige una recuperación deficiente y es costoso; e inyectar todo el corpus degrada la latencia y diluye la relevancia."
+ },
+ {
+  "id": 36,
+  "domain": 3,
+  "task": "3.1",
+  "type": "mr",
+  "stem": "Una empresa de comercio electrónico quiere un asistente que genere descripciones de producto a partir de fichas técnicas y responda consultas de inventario en varios idiomas. Debe fundamentar sus respuestas en el catálogo real y evitar respuestas ofensivas o fuera de alcance. ¿Cuáles DOS medidas son las más apropiadas para el lanzamiento?",
+  "options": [
+   "Usar RAG con Amazon Bedrock Knowledge Bases sobre el catálogo para fundamentar las respuestas en datos reales.",
+   "Aplicar Guardrails de Amazon Bedrock para filtrar contenido tóxico y restringir temas fuera de alcance.",
+   "Publicar el asistente sin supervisión humana para que aprenda de forma autónoma de las interacciones.",
+   "Entrenar un modelo desde cero con los datos del catálogo para eliminar por completo cualquier error.",
+   "Usar Amazon Polly para traducir las descripciones entre idiomas."
+  ],
+  "answers": [
+   0,
+   1
+  ],
+  "explain": "RAG con Knowledge Bases fundamenta las respuestas en el catálogo real y los Guardrails filtran contenido tóxico y temas fuera de alcance. Publicar sin supervisión humana no reduce errores; entrenar desde cero no elimina todas las fallas y es desproporcionado; y Polly sintetiza voz, no traduce texto."
+ },
+ {
+  "id": 37,
+  "domain": 3,
+  "task": "3.1",
+  "type": "order",
+  "stem": "Ordena los pasos para construir un flujo de generación aumentada por recuperación (RAG).",
+  "items": [
+   "Dividir los documentos en fragmentos manejables preservando el contexto.",
+   "Generar incrustaciones (embeddings) de cada fragmento con un modelo de incrustaciones.",
+   "Indexar los vectores en una base de datos vectorial para búsqueda por similitud.",
+   "Recuperar los fragmentos más relevantes para la consulta del usuario.",
+   "Aumentar el prompt con los fragmentos recuperados y generar la respuesta con el modelo fundacional."
+  ],
+  "explain": "El flujo de RAG inicia con la división en fragmentos, luego genera incrustaciones, las indexa en una base vectorial, recupera los más similares a la consulta y finalmente inyecta ese contexto en el prompt para que el modelo fundacional genere una respuesta fundamentada."
+ },
+ {
+  "id": 38,
+  "domain": 3,
+  "task": "3.2",
+  "type": "mc",
+  "stem": "Una aseguradora procesa formularios escaneados que mezclan texto impreso, tablas y campos clave-valor, y necesita extraer esa estructura para alimentar un sistema de aprobación. El equipo evalúa Amazon Textract y Amazon Rekognition. ¿Cuál es la opción MÁS adecuada?",
+  "options": [
+   "Amazon Textract (servicio de extracción de texto de documentos) con análisis de tablas, formularios y consultas para obtener estructura y respuestas específicas.",
+   "Amazon Rekognition (servicio de análisis de imágenes y video) con detección de texto en imágenes para leer los formularios escaneados.",
+   "Amazon Transcribe para convertir los formularios escaneados en texto legible.",
+   "Amazon Comprehend para extraer entidades y tablas directamente del PDF."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Textract está diseñado para extraer texto, tablas y pares clave-valor de documentos, e incluye consultas dirigidas. Rekognition detecta texto dentro de escenas e imágenes, pero no estructura tablas ni formularios; Transcribe procesa audio, no documentos; y Comprehend analiza texto ya extraído, no lee PDFs."
+ },
+ {
+  "id": 39,
+  "domain": 3,
+  "task": "3.2",
+  "type": "mc",
+  "stem": "Un centro de contacto graba llamadas con varios interlocutores y un vocabulario clínico especializado. Necesita una transcripción en tiempo real que distinga quién habla y reconozca correctamente la jerga médica. ¿Cuál servicio es MÁS adecuado?",
+  "options": [
+   "Amazon Transcribe (servicio de transcripción de voz a texto) con diarización de hablantes y vocabulario personalizado de términos médicos.",
+   "Amazon Polly para transcribir las llamadas con precisión.",
+   "Amazon Comprehend para convertir el audio de las llamadas en texto.",
+   "Amazon Lex para transcribir y entender la conversación en tiempo real."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Transcribe ofrece diarización para separar hablantes y vocabulario personalizado para jerga de dominio. Polly sintetiza voz a partir de texto, no transcribe; Comprehend analiza texto existente, no convierte audio; y Lex está orientado a construir chatbots, no a transcripción pura de llamadas."
+ },
+ {
+  "id": 40,
+  "domain": 3,
+  "task": "3.2",
+  "type": "mc",
+  "stem": "Una plataforma de streaming quiere recomendar películas personalizadas según el historial de cada usuario y, en paralelo, predecir la demanda futura de ancho de banda para dimensionar su infraestructura. Ambos equipos evalúan Amazon Personalize y Amazon Forecast. ¿Cuál asignación es correcta?",
+  "options": [
+   "Amazon Personalize (servicio de recomendaciones) para las recomendaciones por usuario y Amazon Forecast (servicio de predicción de series temporales) para la demanda de ancho de banda.",
+   "Amazon Forecast para las recomendaciones personalizadas y Amazon Personalize para predecir la demanda.",
+   "Amazon Personalize para ambos casos, porque también modela series temporales.",
+   "Amazon Forecast para ambos casos, porque también genera recomendaciones personalizadas."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Personalize genera recomendaciones personalizadas a partir del comportamiento, mientras que Forecast predice series temporales como la demanda futura. Asignarlos al revés es un error conceptual común; ninguno de los dos cubre por sí solo ambos casos, pues sus modelos subyacentes resuelven problemas distintos."
+ },
+ {
+  "id": 41,
+  "domain": 3,
+  "task": "3.2",
+  "type": "mc",
+  "stem": "Un equipo de marketing analiza reseñas de clientes escritas en varios idiomas. Necesita detectar el sentimiento y extraer entidades como productos y marcas para agrupar quejas, y además normalizar todo el texto a un idioma común. ¿Cuál combinación es MÁS adecuada?",
+  "options": [
+   "Amazon Comprehend (servicio de análisis de texto) para el sentimiento y las entidades, y Amazon Translate para normalizar el idioma de las reseñas.",
+   "Amazon Translate para detectar el sentimiento y Amazon Comprehend para traducir las reseñas.",
+   "Amazon Lex para analizar el sentimiento de las reseñas.",
+   "Amazon Rekognition para extraer el texto de las reseñas y Amazon Comprehend para traducirlo."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Comprehend detecta sentimiento y entidades sobre texto, y Translate normaliza idiomas antes del análisis. Invertir sus funciones es un error frecuente; Lex construye chatbots, no analiza corpus de reseñas; y Rekognition procesa imágenes, no extrae ni traduce texto de reseñas."
+ },
+ {
+  "id": 42,
+  "domain": 3,
+  "task": "3.2",
+  "type": "mc",
+  "stem": "Una red social debe moderar imágenes y videos que suben los usuarios para bloquear contenido violento o para adultos antes de publicarlo. El volumen es alto, la moderación debe ser automática y económica, y debe integrarse con umbrales de confianza para derivar a revisión humana solo los casos dudosos. ¿Cuál es la opción MÁS adecuada?",
+  "options": [
+   "Amazon Rekognition (servicio de análisis de imágenes y video) con moderación de contenido y umbrales de confianza para derivar casos ambiguos a revisión.",
+   "Amazon Textract para analizar el contenido visual de las imágenes y videos.",
+   "Un equipo humano que revise todas las imágenes antes de su publicación.",
+   "Amazon Comprehend para clasificar el contenido de las imágenes y videos."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La moderación de contenido de Rekognition clasifica automáticamente imágenes y video con etiquetas y umbrales de confianza, permitiendo derivar solo los casos ambiguos a revisión humana. Textract extrae texto de documentos, no modera contenido visual; la revisión humana total no escala con el volumen; y Comprehend analiza texto, no imágenes."
+ },
+ {
+  "id": 43,
+  "domain": 3,
+  "task": "3.2",
+  "type": "match",
+  "stem": "Empareja cada servicio de IA de AWS con su uso principal.",
+  "pairs": [
+   [
+    "Amazon Rekognition",
+    "Detectar rostros y moderar contenido en imágenes y video"
+   ],
+   [
+    "Amazon Textract",
+    "Extraer texto, tablas y formularios de documentos escaneados"
+   ],
+   [
+    "Amazon Transcribe",
+    "Convertir voz a texto con diarización de hablantes"
+   ],
+   [
+    "Amazon Polly",
+    "Sintetizar voz a partir de texto"
+   ],
+   [
+    "Amazon Comprehend",
+    "Analizar sentimiento y extraer entidades de texto"
+   ],
+   [
+    "Amazon Translate",
+    "Traducir texto entre idiomas"
+   ],
+   [
+    "Amazon Lex",
+    "Construir asistentes conversacionales"
+   ]
+  ],
+  "explain": "Cada servicio resuelve una modalidad distinta: Rekognition opera sobre imágenes y video, Textract sobre documentos, Transcribe sobre audio, Polly para síntesis de voz, Comprehend y Translate sobre texto natural, y Lex para interfaces conversacionales. Confundir la modalidad de entrada es el error más común en este dominio."
+ },
+ {
+  "id": 44,
+  "domain": 3,
+  "task": "3.3",
+  "type": "mc",
+  "stem": "Un desarrollador quiere que su aplicación invoque un modelo fundacional de Amazon Bedrock para responder a partir de documentos internos, sin gestionar infraestructura ni escribir su propio pipeline de recuperación. Además, cuando el usuario lo solicite, el sistema debe orquestar llamadas a APIs propias de la empresa. ¿Cuál es la opción MÁS adecuada?",
+  "options": [
+   "Amazon Bedrock Knowledge Bases para la recuperación gestionada y Amazon Bedrock Agents para orquestar acciones mediante grupos de acción.",
+   "Invocar la API de Amazon Bedrock pegando el corpus completo en cada prompt para evitar la recuperación.",
+   "Montar Amazon OpenSearch Service y un modelo de lenguaje propio en Amazon EC2 (servicio de cómputo) para controlar todo el flujo.",
+   "Usar Amazon SageMaker para entrenar el modelo y construir manualmente el pipeline de recuperación y orquestación."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Knowledge Bases gestiona la ingesta, las incrustaciones y la recuperación, y Bedrock Agents orquesta llamadas a APIs mediante grupos de acción, todo sin infraestructura propia. Pegar el corpus en cada prompt excede la ventana de contexto y eleva el costo; y montar OpenSearch con EC2 o usar SageMaker reintroduce la gestión de infraestructura que el requisito descarta."
+ },
+ {
+  "id": 45,
+  "domain": 3,
+  "task": "3.4",
+  "type": "mc",
+  "stem": "Una empresa quiere que su modelo fundacional responda con el estilo y la jerga de sus analistas financieros. Los informes cambian cada semana, pero el tono es estable, y el equipo dispone de cientos de miles de pares de ejemplo etiquetados, aceptando el costo y el tiempo de un entrenamiento único. ¿Cuál enfoque es MÁS adecuado?",
+  "options": [
+   "Ajuste fino (fine-tuning) del modelo con los pares de ejemplo para adaptar el tono y el estilo de forma persistente.",
+   "RAG con los informes semanales para que el modelo recupere el estilo en cada consulta.",
+   "Ingeniería de prompts con un prompt de sistema que describa el estilo deseado.",
+   "Aumentar la temperatura del modelo para que improvise un tono más cercano al de los analistas."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El ajuste fino es la vía correcta cuando se tiene un corpus etiquetado grande y se busca cambiar el estilo de forma persistente, aceptando el costo. RAG fundamenta en datos cambiantes pero no modifica el tono del modelo; la ingeniería de prompts es económica pero inconsistente para estilos profundos; y la temperatura no enseña estilo, solo altera la aleatoriedad."
+ },
+ {
+  "id": 46,
+  "domain": 3,
+  "task": "3.4",
+  "type": "mr",
+  "stem": "Una empresa debe adaptar un modelo fundacional a su dominio. Sus datos cambian a diario, el presupuesto es limitado y necesita respuestas fundamentadas con baja latencia sin reentrenar el modelo ante cada cambio de datos. ¿Cuáles DOS enfoques son los más apropiados?",
+  "options": [
+   "RAG con una base de conocimiento actualizable para fundamentar las respuestas en datos frescos.",
+   "Ingeniería de prompts con contexto y ejemplos en el prompt para guiar al modelo sin reentrenar.",
+   "Ajuste fino completo del modelo todos los días para reflejar cada cambio de datos.",
+   "Entrenar un modelo fundacional desde cero con los datos del dominio.",
+   "Inyectar todos los datos del dominio en el prompt de cada consulta, sin límite de tokens."
+  ],
+  "answers": [
+   0,
+   1
+  ],
+  "explain": "RAG fundamenta en datos actualizables con baja latencia y la ingeniería de prompts es económica y sin reentrenamiento. El ajuste fino diario es costoso y lento; entrenar desde cero es desproporcionado; e inyectar todo en el prompt excede los límites de tokens y degrada la latencia."
+ },
+ {
+  "id": 47,
+  "domain": 3,
+  "task": "3.4",
+  "type": "order",
+  "stem": "Ordena los pasos para elegir el enfoque de adaptación de un modelo fundacional.",
+  "items": [
+   "Definir el caso de uso y los requisitos de latencia, costo y frecuencia de actualización de los datos.",
+   "Evaluar si los datos cambian con frecuencia y si existe un corpus etiquetado suficientemente grande.",
+   "Elegir entre RAG, ajuste fino o ingeniería de prompts según los requisitos y los datos disponibles.",
+   "Probar el enfoque elegido con un subconjunto de datos y métricas de calidad definidas.",
+   "Implementar en producción y monitorear, iterando sobre el enfoque según los resultados."
+  ],
+  "explain": "La selección del enfoque de adaptación sigue un orden lógico: primero se definen requisitos, luego se evalúan los datos y su dinámica, después se elige entre RAG, ajuste fino o ingeniería de prompts, se valida con métricas y finalmente se itera en producción. Saltarse la evaluación de datos lleva a elegir un enfoque costoso o inadecuado."
+ },
+ {
+  "id": 48,
+  "domain": 4,
+  "task": "4.1",
+  "type": "mc",
+  "stem": "Una aseguradora entrena un modelo de clasificación de riesgo para fijar primas. Una regulación exige que cada cliente reciba una explicación comprensible de su clasificación, y la dirección exige que el modelo no produzca diferencias sistemáticas entre géneros. El conjunto de datos histórico subrepresenta a ciertos grupos demográficos. ¿Cuál es el enfoque MÁS alineado con ambos requisitos?",
+  "options": [
+   "Entrenar una red neuronal de máxima exactitud, medir la equidad a nivel global y ofrecer explicaciones aproximadas por lote una vez al mes.",
+   "Reequilibrar los datos por grupo demográfico, elegir un modelo interpretable y validar con métricas de equidad más explicaciones por predicción.",
+   "Eliminar el atributo de género y todas las variables correlacionadas, y desplegar el modelo sin validación adicional de sesgo.",
+   "Descartar los grupos subrepresentados del entrenamiento para que no afecten la métrica de exactitud global."
+  ],
+  "answers": [
+   1
+  ],
+  "explain": "Reequilibrar los datos, usar un modelo interpretable y validar equidad con explicaciones por predicción cubre a la vez la mitigación de sesgo y la explicabilidad exigida por regulación. Eliminar el atributo de género no basta porque las variables proxy pueden perpetuar el sesgo; las explicaciones globales o por lote no justifican una decisión individual; y descartar grupos subrepresentados agrava el sesgo en lugar de corregirlo."
+ },
+ {
+  "id": 49,
+  "domain": 4,
+  "task": "4.1",
+  "type": "mc",
+  "stem": "Una empresa de salud lanza un chatbot que resume registros clínicos para médicos. Debe minimizar la exposición de información de salud protegida y, a la vez, demostrar ante auditoría que el sistema documenta sus datos de entrenamiento, métricas y limitaciones. Los datos ya se cifran en reposo con AWS KMS. ¿Qué decisión adicional cubre MEJOR ambos requisitos?",
+  "options": [
+   "Aplicar desidentificación a los registros antes de la inferencia y publicar una model card (tarjeta de modelo) con datos de entrenamiento, métricas de sesgo y limitaciones.",
+   "Enviar los registros completos al modelo para maximizar la exactitud y habilitar Amazon CloudWatch para métricas operativas.",
+   "Registrar todas las llamadas con AWS CloudTrail y retener los registros originales indefinidamente para auditoría.",
+   "Entrenar el modelo con los datos de salud completos y restringir el acceso al endpoint solo a usuarios internos."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La desidentificación minimiza la exposición de datos protegidos y la tarjeta de modelo documenta datos, métricas y límites, cubriendo privacidad y transparencia a la vez. CloudTrail aporta trazabilidad, pero retener los registros originales indefinidamente aumenta el riesgo de privacidad; enviar o entrenar con los datos completos sacrifica la minimización; y CloudWatch solo mide rendimiento operativo, no transparencia de gobernanza."
+ },
+ {
+  "id": 50,
+  "domain": 4,
+  "task": "4.1",
+  "type": "mc",
+  "stem": "Un sistema de inspección visual usa visión por computadora en una línea de producción. La iluminación del taller y el desgaste de las piezas varían entre turnos y degradan la precisión de forma gradual. El equipo no puede reetiquetar manualmente cada lote nuevo por costo. ¿Qué enfoque mantiene MEJOR la robustez del modelo ante estos cambios?",
+  "options": [
+   "Monitorear la deriva de datos y de calidad con Amazon SageMaker Model Monitor y reentrenar solo cuando se detecte una desviación significativa.",
+   "Congelar el modelo tras el lanzamiento para garantizar un comportamiento estable y predecible ante cualquier cambio del entorno.",
+   "Entrenar el modelo con imágenes de un único turno con iluminación fija para alcanzar la máxima exactitud en ese entorno.",
+   "Reentrenar el modelo cada hora sin evaluar si hubo cambios, para incorporar siempre los datos más recientes."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Monitorear la deriva y reentrenar solo ante desviaciones significativas mantiene la robustez sin etiquetado manual constante, adaptando el modelo a los cambios ambientales con evidencia. Congelar el modelo lo degrada silenciosamente con el tiempo; entrenar sobre un único entorno sobreajusta y pierde generalización; y reentrenar a ciegas consume recursos y puede desestabilizar el sistema sin necesidad."
+ },
+ {
+  "id": 51,
+  "domain": 4,
+  "task": "4.1",
+  "type": "match",
+  "stem": "Relaciona cada principio de IA responsable con la decisión de diseño que lo materializa.",
+  "pairs": [
+   [
+    "Equidad",
+    "Medir y mitigar las disparidades de desempeño entre grupos demográficos"
+   ],
+   [
+    "Transparencia",
+    "Documentar datos de entrenamiento, métricas y limitaciones en una model card (tarjeta de modelo)"
+   ],
+   [
+    "Explicabilidad",
+    "Ofrecer explicaciones por predicción que un usuario no especialista pueda comprender"
+   ],
+   [
+    "Robustez",
+    "Monitorear la deriva de datos y reentrenar ante desviaciones para conservar el desempeño"
+   ],
+   [
+    "Privacidad",
+    "Desidentificar o minimizar los datos personales antes del entrenamiento y de la inferencia"
+   ]
+  ],
+  "explain": "Cada principio se traduce en una acción concreta de diseño: la equidad exige medir y mitigar disparidades entre grupos; la transparencia exige documentar datos, métricas y límites; la explicabilidad exige explicaciones locales comprensibles; la robustez exige monitoreo y reentrenamiento ante deriva; y la privacidad exige minimizar y desidentificar los datos personales."
+ },
+ {
+  "id": 52,
+  "domain": 4,
+  "task": "4.1",
+  "type": "mc",
+  "stem": "Una plataforma de streaming entrena un modelo de recomendación con el historial de reproducción de sus usuarios. Una normativa exige minimización de datos y permitir que cada usuario solicite la eliminación de su información. El equipo quiere conservar la personalización. ¿Qué decisión de diseño equilibra MEJOR privacidad y utilidad?",
+  "options": [
+   "Entrenar con datos agregados y desidentificados, y permitir borrar los registros individuales cuando el usuario lo solicite.",
+   "Conservar indefinidamente el historial completo de cada usuario para maximizar la precisión del modelo.",
+   "Seudonimizar los registros, pero negar la eliminación porque rompería el modelo ya entrenado.",
+   "Eliminar todo el historial cada semana y entrenar únicamente con los datos de la última sesión."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Los datos agregados y desidentificados minimizan la exposición y el borrado individual cumple el derecho al olvido, conservando cierta utilidad de personalización. Seudonimizar no es anonimizar y negar la eliminación incumple la normativa; conservar los datos indefinidamente viola la minimización; y borrar todo cada semana destruye la personalización sin necesidad."
+ },
+ {
+  "id": 53,
+  "domain": 4,
+  "task": "4.2",
+  "type": "mc",
+  "stem": "Un equipo evalúa un modelo de preselección de currículums antes de lanzarlo. El modelo se entrenó con contrataciones históricas que favorecieron a un grupo demográfico, y el equipo debe detectar y mitigar el sesgo sin degradar en exceso el desempeño. ¿Cuál es la secuencia de acciones MÁS adecuada?",
+  "options": [
+   "Medir el sesgo previo al entrenamiento y el sesgo del modelo con Amazon SageMaker Clarify, y mitigarlo reequilibrando o reetiquetando los datos afectados.",
+   "Publicar el modelo y monitorear el sesgo solo cuando lleguen quejas de candidatos rechazados.",
+   "Eliminar el atributo protegido del conjunto y reentrenar, asumiendo que así el sesgo desaparece.",
+   "Aumentar el dataset con más registros del grupo favorecido para equilibrar el volumen total."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Medir el sesgo con SageMaker Clarify y mitigarlo sobre los datos antes de lanzar detecta y corrige el problema de forma proactiva. Eliminar el atributo protegido no elimina el sesgo porque persisten variables proxy; añadir más registros del grupo favorecido agrava el desequilibrio; y esperar quejas es reactivo y deja el sesgo en producción."
+ },
+ {
+  "id": 54,
+  "domain": 4,
+  "task": "4.2",
+  "type": "mc",
+  "stem": "Una empresa lanza un chatbot de atención al cliente basado en un modelo fundacional. Antes del lanzamiento debe comprobar de forma adversarial si genera respuestas dañinas, revela datos confidenciales o acepta instrucciones maliciosas. El equipo exige evidencia medible y repetible, no solo pruebas manuales esporádicas. ¿Qué enfoque es MÁS adecuado?",
+  "options": [
+   "Ejecutar red-teaming (evaluación adversarial) con probadores diversos, documentar los fallos, reajustar guardarraíles o el modelo y repetir el ciclo periódicamente.",
+   "Probar el modelo una única vez con un guion de preguntas estándar y lanzarlo si no se detectan errores.",
+   "Asumir que el modelo fundacional ya fue evaluado por su proveedor y omitir pruebas propias del caso de uso.",
+   "Publicar el chatbot y aplicar correcciones solo cuando los usuarios reporten salidas dañinas."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El red-teaming con probadores diversos, documentación y ciclos periódicos genera evidencia medible y repetible contra ataques y usos maliciosos. Una prueba única con guion estándar no es adversarial y omite casos límite; delegar la evaluación al proveedor ignora el contexto específico del caso de uso; y publicar antes de evaluar expone a los usuarios a salidas dañinas."
+ },
+ {
+  "id": 55,
+  "domain": 4,
+  "task": "4.2",
+  "type": "mc",
+  "stem": "Un modelo de gradient boosting aprueba o rechaza solicitudes de crédito y debe explicar a cada solicitante, en lenguaje claro para no especialistas, por qué fue rechazado. El modelo usa cientos de características, y la regulación exige explicaciones por decisión individual, no solo un panorama global. ¿Qué enfoque es MÁS adecuado?",
+  "options": [
+   "Generar explicaciones locales por predicción con valores SHAP y traducirlas a un texto claro con los factores que más influyeron en cada decisión.",
+   "Mostrar a cada solicitante la importancia global de características del modelo, calculada una sola vez sobre todo el conjunto.",
+   "Publicar la lista completa de las características y sus coeficientes técnicos para máxima transparencia.",
+   "Justificar los rechazos apelando a la alta exactitud general del modelo, sin dar explicaciones individuales."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Las explicaciones locales por predicción con SHAP, traducidas a lenguaje claro, explican por qué un caso concreto fue rechazado, cumpliendo el requisito regulatorio. La importancia global no explica una decisión individual; publicar cientos de coeficientes técnicos no es comprensible para el usuario; y la exactitud general no equivale a explicabilidad por decisión."
+ },
+ {
+  "id": 56,
+  "domain": 4,
+  "task": "4.2",
+  "type": "mr",
+  "stem": "Una organización publica un asistente de IA generativa que responde preguntas de clientes sobre facturación. Quiere que los usuarios sepan que interactúan con una IA y que la salida puede contener errores, y además documentar internamente las limitaciones para auditoría. ¿Cuáles DOS medidas son las más apropiadas?",
+  "options": [
+   "Etiquetar la salida como generada por IA e incluir un aviso de que puede contener información inexacta.",
+   "Publicar una model card (tarjeta de modelo) con los datos de entrenamiento, las métricas de evaluación, los sesgos conocidos y las limitaciones.",
+   "Ocultar que la respuesta proviene de una IA para que los usuarios confíen más en la información.",
+   "Eliminar todos los registros de evaluación para no exponer errores internos del modelo.",
+   "Entrenar el modelo con más datos de facturación asumiendo que así desaparecerá cualquier error."
+  ],
+  "answers": [
+   0,
+   1
+  ],
+  "explain": "Etiquetar la salida como IA con aviso de inexactitud da transparencia al usuario, y la tarjeta de modelo documenta datos, métricas, sesgos y límites para auditoría. Ocultar el origen de la IA engaña al usuario; eliminar los registros de evaluación va contra la transparencia y la auditoría; y más datos de entrenamiento no garantizan eliminar los errores de salida."
+ },
+ {
+  "id": 57,
+  "domain": 5,
+  "task": "5.1",
+  "type": "mc",
+  "stem": "Una empresa de salud procesa notas clínicas con un modelo fundacional en Amazon Bedrock (servicio de modelos fundacionales) y debe cumplir HIPAA, lo que exige cifrado tanto en reposo como en tránsito. Los datos en reposo ya están protegidos con cifrado del lado del servidor usando una clave de AWS KMS (Servicio de administración de claves). Sin embargo, el equipo detectó que las solicitudes al modelo viajan por la red pública. ¿Qué cambio reduce MÁS el riesgo de exposición en tránsito sin agregar cifrado redundante en la aplicación?",
+  "options": [
+   "Invocar el modelo a través de una VPC endpoint de interfaz con grupos de seguridad (security groups) restrictivos y TLS 1.2+.",
+   "Cifrar los datos con la clave de KMS antes de enviarlos al modelo y descifrarlos en la aplicación tras recibir la respuesta.",
+   "Reutilizar el cifrado SSE-KMS del bucket de S3 para que también cubra el tráfico en tránsito hacia el modelo.",
+   "Crear una clave asimétrica de KMS para firmar cada solicitud de inferencia y garantizar su confidencialidad en tránsito."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La VPC endpoint de interfaz mantiene el tráfico dentro de la red de AWS y, junto con los grupos de seguridad y TLS, elimina la exposición a internet. Cifrar con KMS en la aplicación y el SSE-KMS del bucket protegen datos en reposo, no en tránsito; y una clave de firma otorga integridad y autenticidad, no confidencialidad."
+ },
+ {
+  "id": 58,
+  "domain": 5,
+  "task": "5.1",
+  "type": "mc",
+  "stem": "Un equipo de ciencia de datos debe poder invocar solo los modelos de su proyecto en Amazon Bedrock (servicio de modelos fundacionales), pero hoy su rol de IAM (Administración de identidades y accesos) tiene el permiso bedrock:InvokeModel sin restricciones. Una política corporativa exige mínimo privilegio y segregación por proyecto, y el equipo comparte la cuenta con otros equipos que usan otros modelos. ¿Qué ajuste logra el objetivo sin afectar a los demás equipos?",
+  "options": [
+   "Restringir la política de identidad del rol para limitar bedrock:InvokeModel a los ARN de los modelos del proyecto, usando condiciones como aws:ResourceTag.",
+   "Agregar una condición aws:SourceVpce para permitir las invocaciones solo desde el endpoint de VPC del proyecto.",
+   "Crear roles individuales por científico con permisos idénticos de InvokeModel para poder auditar quién invoca cada modelo.",
+   "Denegar bedrock:InvokeModel a toda la cuenta y volver a otorgar acceso manualmente mediante solicitudes puntuales."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Limitar el permiso a los ARN de los modelos del proyecto y a etiquetas de recurso implementa mínimo privilegio por modelo sin afectar a otros equipos. La condición de endpoint de VPC restringe la ruta de red, pero cualquier modelo alcanzable desde esa VPC seguiría siendo invocable, por lo que no segrega modelos. Los roles individuales añaden auditoría, no restricción, y la denegación global es disruptiva."
+ },
+ {
+  "id": 59,
+  "domain": 5,
+  "task": "5.1",
+  "type": "mc",
+  "stem": "Una aplicación cifra grandes volúmenes de datos de entrenamiento con AWS KMS (Servicio de administración de claves) antes de cargarlos a Amazon S3 (almacenamiento de objetos) para un ajuste fino (fine-tuning) de un modelo. Un revisor propone usar una clave asimétrica 'para mayor seguridad' y firmar cada lote con la misma clave. El equipo tiene un presupuesto ajustado y el proceso es sensible a la latencia. ¿Cuál es la recomendación técnica MÁS correcta?",
+  "options": [
+   "Usar una clave simétrica para el cifrado de los datos y, solo si se requiere firmar, una clave asimétrica separada, ya que las asimétricas no cifran grandes volúmenes y son más lentas.",
+   "Usar una única clave asimétrica RSA para cifrar los datos y firmar cada lote, combinando ambas funciones sin costo adicional.",
+   "Usar la misma clave simétrica para cifrar los datos y firmar los lotes, reutilizándola para ambas operaciones.",
+   "Eliminar el cifrado de KMS y depender del cifrado del bucket de S3 para reducir costos y latencia."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Las claves simétricas son las adecuadas para el cifrado por sobres (envelope encryption) de grandes volúmenes; las asimétricas solo procesan datos pequeños y son más lentas y costosas. Una clave asimétrica no puede cifrar y firmar a la vez en KMS, y las simétricas no generan firmas digitales. Prescindir del cifrado incumple el requisito de protección de datos."
+ },
+ {
+  "id": 60,
+  "domain": 5,
+  "task": "5.1",
+  "type": "mc",
+  "stem": "Un banco despliega un chatbot de asesoría en Amazon Bedrock (servicio de modelos fundacionales) y debe bloquear la asesoría de inversión no autorizada, impedir que se revelen datos personales de clientes y garantizar que las respuestas se basen solo en documentos aprobados. El equipo quiere una solución nativa con mínima intervención manual por solicitud. ¿Qué enfoque cumple de forma MÁS completa?",
+  "options": [
+   "Configurar Guardrails de Amazon Bedrock con filtros de contenido, detección y enmascaramiento de PII, y fundamentación (grounding) en las bases de conocimiento aprobadas.",
+   "Ajustar fino (fine-tune) un modelo propio con todos los documentos de la empresa para que solo conozca información aprobada.",
+   "Pedir a un asesor humano que revise cada respuesta antes de mostrarla al cliente para garantizar el cumplimiento.",
+   "Aplicar un filtro de palabras prohibidas en la capa de aplicación para bloquear términos financieros sensibles."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Los Guardrails combinan filtrado de contenido, enmascaramiento de PII y fundamentación en fuentes aprobadas, de forma nativa y escalable. El ajuste fino no restringe las salidas a los documentos ni evita la revelación de PII; la revisión manual no cumple 'mínima intervención manual'; y los filtros por palabras no detectan contexto ni datos personales."
+ },
+ {
+  "id": 61,
+  "domain": 5,
+  "task": "5.2",
+  "type": "mc",
+  "stem": "Una multinacional procesa datos de ciudadanos de la UE con un modelo en Amazon Bedrock (servicio de modelos fundacionales) y debe cumplir requisitos de residencia de datos. Además, debe poder demostrar a los reguladores dónde se almacenan y procesan los datos. Ya opera en varias regiones de AWS y quiere minimizar la complejidad operativa. ¿Qué combinación de controles es la MÁS adecuada?",
+  "options": [
+   "Ejecutar los modelos y almacenar los datos en la región de la UE, y documentar los límites regionales con AWS CloudTrail (registro de actividad) y AWS Config (evaluación de configuración) para evidenciar el cumplimiento.",
+   "Replicar los datos en varias regiones para alta disponibilidad y cifrarlos con una clave KMS multirregión (multi-Region key).",
+   "Procesar en cualquier región pero cifrar con una clave de KMS y adjuntar una declaración de cumplimiento firmada.",
+   "Usar una VPN para enviar los datos a la región de menor costo y así reducir el gasto de residencia."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La residencia exige que el almacenamiento y el procesamiento permanezcan en la región; la opción correcta los mantiene allí y los audita con CloudTrail y Config. Replicar en varias regiones o procesar en otra región incumple la residencia aunque se use una clave multirregión o cifrado; y una VPN no cambia dónde se almacenan o procesan los datos."
+ },
+ {
+  "id": 62,
+  "domain": 5,
+  "task": "5.2",
+  "type": "mc",
+  "stem": "Un equipo de gobernanza investiga una posible fuga de información y debe responder con precisión quién invocó un modelo de Amazon Bedrock (servicio de modelos fundacionales), cuándo lo hizo y qué datos se enviaron, vinculando cada invocación con el usuario final autenticado. ¿Qué combinación provee la trazabilidad MÁS completa?",
+  "options": [
+   "Habilitar el registro de invocación de modelos (model invocation logging) hacia Amazon S3 y Amazon CloudWatch (servicio de monitoreo), registrar la actividad de la API con AWS CloudTrail, y correlacionar al usuario final mediante los registros de la aplicación y AWS X-Ray (servicio de trazabilidad distribuida).",
+   "Habilitar solo AWS CloudTrail, que ya registra automáticamente el contenido completo de cada invocación, incluidos los datos enviados al modelo.",
+   "Guardar los prompts y respuestas en un bucket de S3 cifrado con KMS para revisarlos manualmente durante cada auditoría.",
+   "Usar Amazon GuardDuty (servicio de detección de amenazas) para registrar automáticamente el contenido de las invocaciones de Bedrock."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "El registro de invocación de modelos captura el contenido de prompts y respuestas, mientras CloudTrail registra quién y cuándo invocó la API; los registros de la aplicación y X-Ray vinculan la invocación con el usuario final. CloudTrail no guarda el contenido de los prompts; GuardDuty detecta amenazas y no archiva el contenido; y copiar a S3 no aporta la correlación de identidad."
+ },
+ {
+  "id": 63,
+  "domain": 5,
+  "task": "5.2",
+  "type": "mc",
+  "stem": "Una empresa de salud usa un modelo en Amazon Bedrock (servicio de modelos fundacionales) con datos de pacientes protegidos por HIPAA. Debe cifrar los datos en reposo con una clave cuya rotación controle, y garantizar que solo un rol autorizado pueda descifrarlos. ¿Qué diseño de AWS KMS (Servicio de administración de claves) satisface estos requisitos?",
+  "options": [
+   "Usar una clave administrada por el cliente (customer managed key) con rotación automática, una política de clave que conceda kms:Decrypt solo al rol autorizado, y cifrar el bucket de S3 con SSE-KMS.",
+   "Usar una clave administrada por AWS (AWS managed key), porque AWS la rota automáticamente y reduce la carga de cumplimiento del cliente.",
+   "Usar cifrado del lado del cliente con una clave simétrica guardada en un archivo de configuración cifrado dentro de S3.",
+   "Usar una clave administrada por el cliente sin rotación, para poder auditar manualmente cada versión de la clave."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "Una clave administrada por el cliente permite controlar la rotación y definir una política de clave que restringe kms:Decrypt al rol autorizado, cumpliendo HIPAA. Las claves administradas por AWS rotan pero limitan el control del cliente sobre la política y el ciclo de vida; almacenar la clave en un archivo de configuración es un anti-patrón de seguridad; y no rotar incumple el requisito."
+ },
+ {
+  "id": 64,
+  "domain": 5,
+  "task": "5.1",
+  "type": "order",
+  "stem": "Ordena los pasos del ciclo de respuesta ante un incidente de seguridad en un sistema de IA.",
+  "items": [
+   "Detectar la actividad anómala mediante el registro de invocación de modelos y AWS CloudTrail.",
+   "Contener el incidente revocando los permisos del principal comprometido y bloqueando el acceso de red (grupos de seguridad y VPC endpoint).",
+   "Analizar la causa raíz revisando los registros y la configuración de IAM y de los endpoints de VPC.",
+   "Aplicar medidas correctivas, como endurecer las políticas de IAM y los Guardrails de Amazon Bedrock.",
+   "Documentar las lecciones aprendidas y actualizar el plan de respuesta a incidentes."
+  ],
+  "explain": "La secuencia sigue el ciclo de respuesta a incidentes: primero detectar y evidenciar, luego contener para detener el daño, después investigar la causa, aplicar correcciones y finalmente documentar. Invertir la contención antes de la detección impediría recopilar evidencia, y corregir antes de analizar la causa raíz deja el incidente sin resolver."
+ },
+ {
+  "id": 65,
+  "domain": 5,
+  "task": "5.2",
+  "type": "mc",
+  "stem": "Una entidad del sector público despliega un sistema de IA generativa que responde a ciudadanos sobre trámites. Los responsables exigen documentar el uso previsto, las limitaciones conocidas, los datos de entrenamiento y el desempeño del modelo, y además que los ciudadanos sepan que interactúan con una IA. ¿Qué conjunto de medidas satisface de forma MÁS completa estos requisitos de transparencia?",
+  "options": [
+   "Publicar una tarjeta de modelo (model card) con el uso previsto, limitaciones, datos y métricas de desempeño, y mostrar un aviso claro en la interfaz de que la respuesta es generada por IA.",
+   "Publicar el código fuente y el dataset completo de entrenamiento para que los ciudadanos auditen por sí mismos el sistema.",
+   "Ocultar que la respuesta proviene de una IA para que los ciudadanos evalúen el contenido sin sesgo de desconfianza.",
+   "Incluir un aviso genérico en los términos y condiciones del sitio, accesible mediante un enlace discreto."
+  ],
+  "answers": [
+   0
+  ],
+  "explain": "La tarjeta de modelo documenta el uso previsto, las limitaciones, los datos y el desempeño, y el aviso en la interfaz informa al usuario de forma clara. Publicar código y datos no sustituye a la tarjeta de modelo y suele ser inviable con modelos fundacionales; ocultar el origen de la IA o enterrar un aviso genérico contradice la transparencia."
+ }
+]

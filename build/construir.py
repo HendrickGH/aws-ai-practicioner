@@ -13,13 +13,17 @@ MARCADOR = "__EXAMS_JSON__"
 
 EXAMENES = [
     ("A", "Examen 1 — Escenarios mixtos",
-     "Empresas y equipos variados; cubre el blueprint completo sin un sector dominante."),
+     "Empresas y equipos variados; cubre el blueprint completo sin un sector dominante.", "facil"),
     ("B", "Examen 2 — Comercio, logística y retail",
-     "Tiendas, marketplaces, almacenes, catálogos y reparto de última milla."),
+     "Tiendas, marketplaces, almacenes, catálogos y reparto de última milla.", "facil"),
     ("C", "Examen 3 — Servicios financieros y regulación",
-     "Bancos, aseguradoras, fintech, auditoría, expedientes legales y cumplimiento."),
+     "Bancos, aseguradoras, fintech, auditoría, expedientes legales y cumplimiento.", "facil"),
     ("D", "Examen 4 — Salud, industria y sector público",
-     "Hospitales, laboratorios, manufactura, energía, gobierno y universidades."),
+     "Hospitales, laboratorios, manufactura, energía, gobierno y universidades.", "facil"),
+    ("E", "Examen 5 — Difícil · Escenarios mixtos avanzados",
+     "Escenarios largos con restricciones múltiples; obliga a sintetizar conceptos de varios dominios.", "dificil"),
+    ("F", "Examen 6 — Difícil · Casos integrados multi-dominio",
+     "Situaciones reales que cruzan fundamentos, IA generativa, aplicaciones y gobernanza en un mismo caso.", "dificil"),
 ]
 
 
@@ -37,8 +41,8 @@ def main() -> None:
         raise SystemExit(f"La plantilla no contiene el marcador {MARCADOR}")
 
     examenes = [
-        {"id": i, "name": n, "desc": d, "questions": cargar(i)}
-        for i, n, d in EXAMENES
+        {"id": i, "name": n, "desc": d, "level": lv, "questions": cargar(i)}
+        for i, n, d, lv in EXAMENES
     ]
     html = plantilla.replace(
         MARCADOR, json.dumps(examenes, ensure_ascii=False, separators=(",", ":"))

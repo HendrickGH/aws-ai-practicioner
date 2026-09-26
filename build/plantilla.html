@@ -63,6 +63,8 @@
     .examcard.on{border-color:var(--acento);background:var(--acento-suave)}
     .examcard.on::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;
       border-radius:3px;background:var(--acento)}
+    .nivel-h{margin:18px 0 0;font-size:12.5px;font-weight:750;letter-spacing:.05em;
+      text-transform:uppercase;color:var(--texto2)}
     .opt{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--borde);border-radius:var(--r-sm);
       padding:11px 13px;margin:8px 0;cursor:pointer;background:var(--panel2);transition:border-color .15s,background .15s}
     .opt:hover{border-color:var(--borde2)}
@@ -239,7 +241,7 @@ function render(){
 }
 function inicioHTML(){
   const hist=store.read().slice().sort((a,b)=>b.ts-a.ts);
-  const cards=EXAMS.map(ex=>{
+  const tarjeta=(ex)=>{
     const mios=hist.filter(a=>a.examId===ex.id);
     const mejor=mios.length? Math.max(...mios.map(a=>a.puntaje)) : null;
     const ult=mios.length? mios[0] : null;
@@ -248,15 +250,20 @@ function inicioHTML(){
         <span class="tag">${ex.questions.length} preguntas</span></div>
       <div class="muted" style="margin-top:4px">${ex.desc}</div>
       <div class="muted" style="margin-top:6px">${mios.length? `Intentos: ${mios.length} · mejor puntaje: ${mejor} · último: ${ult.puntaje} (${fecha(ult.ts)})` : "Sin intentos todavía"}</div>
-    </div>`; }).join("");
+    </div>`; };
+  const NIVELES=[["facil","Nivel fácil","Los 4 exámenes originales: preguntas de reconocimiento para consolidar el blueprint."],
+    ["dificil","Nivel difícil","Escenarios robustos y opciones ambiguas; discriminan mejor cerca del corte de 700."]];
+  const cards=NIVELES.map(([lv,titulo,desc])=>{
+    const grupo=EXAMS.filter(ex=>ex.level===lv).map(tarjeta).join("");
+    return `<div class="nivel-h">${titulo}</div><p class="muted" style="margin:0 0 6px">${desc}</p>${grupo}`; }).join("");
   const aviso = store.ok? "" : `<div class="banner"><strong>Tu navegador está bloqueando localStorage</strong>, así que los intentos de esta sesión
     se guardan solo en memoria y se pierden al cerrar. Si abres el archivo con Chrome o dentro de la app, el historial sí persiste.
     Usa el botón Exportar del historial para no perder nada.</div>`;
   return `<h1>Simuladores · AWS Certified AI Practitioner (AIF-C01)</h1>
-    <p class="muted">4 exámenes de 65 preguntas · pesos del blueprint 20/24/28/14/14 · escala 100–1000 con corte en 700 · contenido en español</p>
+    <p class="muted">6 exámenes de 65 preguntas en 2 niveles · pesos del blueprint 20/24/28/14/14 · escala 100–1000 con corte en 700 · contenido en español</p>
     ${aviso}
     <div class="card"><h2 style="margin-top:0">1. Elige el examen</h2>${cards}
-      <p class="muted" style="margin-bottom:0">Los cuatro exámenes cubren el mismo blueprint con escenarios distintos. No repiten preguntas entre sí.</p></div>
+      <p class="muted" style="margin-bottom:0">Los seis exámenes cubren el mismo blueprint. El nivel fácil usa escenarios de reconocimiento; el difícil, escenarios con restricciones múltiples y opciones ambiguas. No repiten preguntas entre sí.</p></div>
     <div class="card"><h2 style="margin-top:0">2. Elige el modo</h2>
       <div class="seg">
         <button class="seg-btn${INICIO.modo==="examen"?" active":""}" data-pickmode="examen">Examen simulado · 90 minutos</button>
